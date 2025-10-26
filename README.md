@@ -10,6 +10,29 @@ Rust, Golang, TypeScript, Lua and more.
 - A [Nerd Font](https://www.nerdfonts.com/)
 - Language toolchains: Rust, Go, Node.js (for respective language support)
 
+### For blink.cmp Rust Fuzzy
+
+This config uses blink.cmp's faster Rust implementation for fuzzy matching.
+
+#### Prerequisites
+
+- Download the pre-built binary for your system from [latest release](https://github.com/Saghen/blink.cmp/releases/latest)
+- Find your Neovim data directory:
+
+```bash
+# Run this in Neovim
+:echo stdpath('data')
+# Example output: /home/user/.local/share/nvim
+```
+
+- Create the directory and move the binary
+
+```bash
+mkdir -p ~/.local/share/nvim/lazy/blink.cmp/target/release
+mv ~/Downloads/x86_64-unknown-linux-gnu.so
+ ~/.local/share/nvim/lazy/blink.cmp/target/release/libblink_cmp_fuzzy.so
+```
+
 ## Installation
 
 ```bash
