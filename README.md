@@ -3,6 +3,8 @@
 Minimal Neovim setup with LSP, formatting and linting for
 Rust, Golang, TypeScript, Lua and more.
 
+_Based on [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) as a reference._
+
 ## Requirements
 
 - Neovim >= 0.11.0
@@ -66,6 +68,11 @@ nvim
 - Bash (bashls, shellcheck, shfmt)
 - Markdown (marksman, markdownlint-cli2, prettierd)
 - TOML (taplo)
+
+## Acknowledgments
+
+This configuration was build with reference to
+https://github.com/nvim-lua/kickstart.nvim.
 
 ## License
 
