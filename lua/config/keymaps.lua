@@ -34,6 +34,12 @@ vim.keymap.set('n', '<C-u>', '<C-u>zz')
 vim.keymap.set('n', 'n', 'nzzzv')
 vim.keymap.set('n', 'N', 'Nzzzv')
 
+vim.keymap.set('n', '[q', vim.cmd.cnext, { desc = 'Previous [Q]uickfix' })
+vim.keymap.set('n', ']q', vim.cmd.cnext, { desc = 'Next [Q]uickfix' })
+
+vim.keymap.set('n', '[b', vim.cmd.cnext, { desc = 'Previous [B]uffer' })
+vim.keymap.set('n', ']b', vim.cmd.cnext, { desc = 'Next [B]uffer' })
+
 vim.keymap.set(
   'n',
   '<Leader>bp',
@@ -56,7 +62,6 @@ vim.keymap.set(
   vim.diagnostic.setloclist,
   { desc = 'Open diagnostic [Q]uickfix list' }
 )
-
 vim.keymap.set('n', '<Leader>pc', function()
   local path = vim.fn.expand '%:p'
   vim.fn.setreg('+', path)

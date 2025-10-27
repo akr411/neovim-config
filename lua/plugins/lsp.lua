@@ -143,6 +143,37 @@ lspconfig.config = function()
           not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf }
         )
       end, '[T]oggle inlay [H]ints')
+
+      map('[e', function()
+        vim.diagnostic.jump {
+          count = -1,
+          severity = vim.diagnostic.severity.ERROR,
+        }
+      end, 'Previous [E]rror')
+      map(']e', function()
+        vim.diagnostic.jump {
+          count = 1,
+          severity = vim.diagnostic.severity.ERROR,
+        }
+      end, 'Next [E]rror')
+      map('[w', function()
+        vim.diagnostic.jump {
+          count = -1,
+          severity = vim.diagnostic.severity.WARN,
+        }
+      end, 'Previous [W]arning')
+      map(']w', function()
+        vim.diagnostic.jump {
+          count = 1,
+          severity = vim.diagnostic.severity.WARN,
+        }
+      end, 'Next [W]arning')
+      map(']w', function()
+        vim.diagnostic.jump { count = -1 }
+      end, 'Previous [D]iagnostic')
+      map(']w', function()
+        vim.diagnostic.jump { count = 1 }
+      end, 'Next [D]iagnostic')
     end,
   })
 end
