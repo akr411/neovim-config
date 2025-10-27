@@ -55,7 +55,7 @@ vim.keymap.set(
 )
 vim.keymap.set('n', '<Leader>bb', '<C-6>', { desc = '[B]uffer toggle' })
 
-vim.keymap.set('n', '<Leader>e', vim.cmd.Explore, { desc = 'Open explorer' })
+-- vim.keymap.set('n', '<Leader>e', vim.cmd.Explore, { desc = 'Open [E]xplorer' })
 vim.keymap.set(
   'n',
   '<Leader>q',
