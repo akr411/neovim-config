@@ -5,6 +5,16 @@ local M = {
 
 M.opts = {
   { 'border-fused', 'hide', 'fzf-native' },
+  oldfiles = {
+    cwd_only = true,
+    stat_file = true,
+    include_current_session = true,
+  },
+  grep = {
+    rg_glob = true,
+    glob_flag = '--iglob',
+    glob_separator = '%s%-%-',
+  },
   winopts = {
     border = 'single',
   },
@@ -33,7 +43,40 @@ M.keys = function()
     { '<Leader>sq', fzf.quickfix, desc = '[S]earch [Q]uickfix' },
     { '<Leader>sr', fzf.resume, desc = '[S]earch [R]esume' },
     { '<Leader>st', fzf.tabs, desc = '[S]earch [T]abs' },
+    { '<Leader>sv', fzf.grep_visual, desc = '[S]earch [V]isual selection' },
     { '<Leader>sw', fzf.grep_cword, desc = '[S]earch current [W]ord' },
+    {
+      '<Leader>s.',
+      function()
+        local opts = {
+          prompt = 'Parent Directories> ',
+          actions = {
+            ['default'] = function(selected)
+              fzf.files { cwd = selected[1] }
+            end,
+          },
+        }
+
+        local path = vim.fn.expand '%:p:h'
+        if path:sub(1, 1) ~= '/' then
+          return
+        end
+
+        local dirs = {}
+        while path ~= '/' do
+          path = vim.fn.fnamemodify(path, ':h')
+          table.insert(dirs, path)
+        end
+        fzf.fzf_exec(dirs, opts)
+      end,
+      desc = '[S]earch parent directories [..]',
+    },
+
+    {
+      '<Leader>po',
+      fzf.complete_path,
+      desc = '[P]ath c[O]mplete under cursor',
+    },
   }
 end
 
