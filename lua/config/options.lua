@@ -7,6 +7,8 @@ vim.g.netrw_keepdir = 0
 vim.g.netrw_preview = 1
 vim.g.netrw_cursor = 2
 vim.g.netrw_sizestyle = 'H'
+vim.g.netrw_hide = 1
+vim.g.netrw_list_hide = [[\(^\|\s\s\)\zs\.\S\+]]
 
 -- Options
 vim.o.termguicolors = true
