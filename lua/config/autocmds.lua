@@ -1,4 +1,4 @@
-local augroup = vim.api.nvim_create_augroup('user-config', {})
+local augroup = vim.api.nvim_create_augroup('user-config', { clear = true })
 
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking text',
