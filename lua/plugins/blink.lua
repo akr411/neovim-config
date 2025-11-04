@@ -14,12 +14,21 @@ local M = {
 }
 
 M.opts = {
-  keymap = { preset = 'default' },
+  keymap = {
+    preset = 'enter',
+    ['<C-k>'] = { 'select_prev', 'fallback_to_mappings' },
+    ['<C-j>'] = { 'select_next', 'fallback_to_mappings' },
+    ['<C-p>'] = { 'scroll_documentation_up', 'fallback' },
+    ['<C-n>'] = { 'scroll_documentation_down', 'fallback' },
+  },
   appearance = { nerd_font_variant = 'mono' },
   completion = {
     menu = {
       border = 'single',
       scrollbar = false,
+      draw = {
+        treesitter = { 'lsp' },
+      },
     },
     documentation = {
       auto_show = false,
