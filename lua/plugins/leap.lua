@@ -5,7 +5,7 @@ local M = {
 M.config = function()
   local leap = require 'leap'
   local leap_user = require 'leap.user'
-  leap_user.set_repeat_keys('<Enter>', '<Backspace>')
+  leap_user.set_repeat_keys('<C-j>', '<C-k>')
 
   -- Enhanced f/t motions
   do
