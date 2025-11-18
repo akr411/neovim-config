@@ -32,6 +32,15 @@ M.keys = {
 
 M.opts = {
   default_file_explorer = true,
+  keymaps = {
+    ['<Esc>'] = {
+      function()
+        require('oil').close()
+      end,
+      desc = 'Close oil window',
+      mode = 'n',
+    },
+  },
   columns = {
     'icon',
     'size',
