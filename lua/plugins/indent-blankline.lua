@@ -4,7 +4,10 @@ local M = {
 }
 
 M.opts = {
-  indent = { char = '│' },
+  indent = {
+    char = '│',
+    tab_char = '│',
+  },
 }
 
 return M

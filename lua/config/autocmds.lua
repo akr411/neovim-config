@@ -40,9 +40,13 @@ vim.api.nvim_create_autocmd('BufReadPost', {
 vim.api.nvim_create_autocmd('FileType', {
   desc = 'File based indentation settings',
   group = augroup,
-  pattern = { 'lua' },
-  callback = function()
-    vim.opt_local.tabstop = 2
-    vim.opt_local.shiftwidth = 2
+  pattern = { 'lua', 'go' },
+  callback = function(args)
+    if args.match == 'lua' then
+      vim.opt_local.tabstop = 2
+      vim.opt_local.shiftwidth = 2
+    elseif args.match == 'go' then
+      vim.opt_local.listchars = 'tab:  ,trail:·,nbsp:␣'
+    end
   end,
 })
