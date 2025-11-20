@@ -50,6 +50,18 @@ lspconfig.config = function()
     },
     html = {},
     marksman = {},
+    pyright = {
+      settings = {
+        python = {
+          analysis = {
+            typeCheckingMode = 'strict',
+            autoSearchPaths = true,
+            useLibraryCodeForTypes = true,
+            diagnosticMode = 'workspace',
+          },
+        },
+      },
+    },
     rust_analyzer = {
       settings = {
         checkOnSave = {
@@ -80,6 +92,7 @@ lspconfig.config = function()
   local ensure_installed = vim.tbl_keys(servers or {})
   vim.list_extend(ensure_installed, {
     -- Formatters
+    'blackd-client',
     'gofumpt',
     'goimports',
     'prettierd',
@@ -91,6 +104,7 @@ lspconfig.config = function()
     'eslint_d',
     'golangci-lint',
     'markdownlint-cli2',
+    'ruff',
     'shellcheck',
   })
   require('mason-tool-installer').setup {

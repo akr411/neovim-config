@@ -33,6 +33,7 @@ M.opts = {
     typescript = { 'prettierd' },
     typescriptreact = { 'prettierd' },
     lua = { 'stylua' },
+    python = { 'blackd-client' },
     toml = { 'taplo' },
     yaml = { 'prettierd' },
   },

@@ -12,6 +12,7 @@ M.config = function()
     javascript = { 'eslint_d' },
     javascriptreact = { 'eslint_d' },
     markdown = { 'markdownlint-cli2' },
+    python = { 'ruff' },
     typescript = { 'eslint_d' },
     typescriptreact = { 'eslint_d' },
     sh = { 'shellcheck' },
