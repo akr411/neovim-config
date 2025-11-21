@@ -5,6 +5,8 @@ Rust, Golang, TypeScript, Lua and more.
 
 _Based on [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) as a reference._
 
+<img src="resources/screenshot.png" width="700">
+
 ## Requirements
 
 - Neovim >= 0.11.0
@@ -65,6 +67,7 @@ nvim
 - TypeScript/JavaScript (ts_ls, eslint_d, prettierd)
 - HTML/CSS (html, cssls, prettierd)
 - Lua (lua_ls, stylua)
+- Python (pyright, black, ruff)
 - Bash (bashls, shellcheck, shfmt)
 - Markdown (marksman, markdownlint-cli2, prettierd)
 - TOML (taplo)
