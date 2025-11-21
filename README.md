@@ -58,6 +58,7 @@ nvim
 - Linting: nvim-lint with auto-linting
 - Syntax: Treesitter
 - Fuzzy find: fzf-lua for files, grep, LSP symbols
+- File explorer: oil.nvim
 - UI: rose-pine colorscheme, mini.statusline, fidget.nvim for LSP progress
 
 ## Languages Supported
