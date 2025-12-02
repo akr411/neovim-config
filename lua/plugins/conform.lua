@@ -30,6 +30,7 @@ M.opts = {
     json = { 'prettierd' },
     javascript = { 'prettierd' },
     javascriptreact = { 'prettierd' },
+    kotlin = { 'ktlint' },
     typescript = { 'prettierd' },
     typescriptreact = { 'prettierd' },
     lua = { 'stylua' },

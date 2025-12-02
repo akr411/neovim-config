@@ -49,6 +49,7 @@ lspconfig.config = function()
       },
     },
     html = {},
+    kotlin_lsp = {},
     marksman = {},
     pyright = {
       settings = {
@@ -103,6 +104,7 @@ lspconfig.config = function()
     -- Linters
     'eslint_d',
     'golangci-lint',
+    'ktlint',
     'markdownlint-cli2',
     'ruff',
     'shellcheck',

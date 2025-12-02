@@ -11,6 +11,7 @@ M.opts = {
     'go',
     'html',
     'javascript',
+    'kotlin',
     'lua',
     'luadoc',
     'markdown',

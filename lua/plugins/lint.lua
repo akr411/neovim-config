@@ -11,6 +11,7 @@ M.config = function()
     go = { 'golangcilint' },
     javascript = { 'eslint_d' },
     javascriptreact = { 'eslint_d' },
+    kotlin = { 'ktlint' },
     markdown = { 'markdownlint-cli2' },
     python = { 'ruff' },
     typescript = { 'eslint_d' },
