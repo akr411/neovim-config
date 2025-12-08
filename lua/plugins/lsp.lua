@@ -96,6 +96,7 @@ lspconfig.config = function()
     'blackd-client',
     'gofumpt',
     'goimports',
+    'ktfmt',
     'prettierd',
     'shfmt',
     'stylua',
