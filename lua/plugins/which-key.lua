@@ -10,6 +10,7 @@ M.opts = {
     border = 'single',
   },
   spec = {
+    { '<Leader>a', group = 'h[A]rpoon' },
     { '<Leader>b', group = '[B]uffer' },
     { '<Leader>c', group = '[C]ode' },
     { '<Leader>g', group = '[G]it' },
