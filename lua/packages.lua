@@ -14,8 +14,6 @@ local setup_treesitter = function()
   treesitter.setup()
   local ensure_installed = {
   	"bash",
-  	"c",
-  	"cpp",
   	"json",
     "lua",
   	"markdown",
@@ -75,7 +73,6 @@ end, { desc = "FZF Diagnostics Workspace" })
 
 -- Mini.nvim
 require("mini.ai").setup()
-require("mini.comment").setup()
 require("mini.move").setup()
 require("mini.surround").setup()
 require("mini.cursorword").setup()
