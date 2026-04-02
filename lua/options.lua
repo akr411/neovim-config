@@ -24,6 +24,7 @@ vim.opt.incsearch = true
 vim.opt.signcolumn = "yes"
 vim.opt.colorcolumn = "80"
 vim.opt.showmatch = true
+vim.opt.showcmd = false
 vim.opt.cmdheight = 1
 vim.opt.completeopt = "menuone,noinsert,noselect"
 vim.opt.showmode = false
