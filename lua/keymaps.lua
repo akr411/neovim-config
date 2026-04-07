@@ -35,6 +35,14 @@ vim.keymap.set("v", ">", ">gv")
 
 vim.keymap.set("n", "J", "mzJ`z")
 
+vim.keymap.set('n', '[q', vim.cmd.cprev)
+vim.keymap.set('n', ']q', vim.cmd.cnext)
+
+vim.keymap.set('n', '[b', vim.cmd.bprevious)
+vim.keymap.set('n', ']b', vim.cmd.bnext)
+
+vim.keymap.set('n', '<Leader>q', vim.diagnostic.setloclist)
+
 vim.keymap.set("n", "<Leader>pa", function() -- show file path
 	local path = vim.fn.expand("%:p")
 	vim.fn.setreg("+", path)
