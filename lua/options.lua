@@ -1,6 +1,11 @@
-vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0
-vim.g.netrw_winsize = 25
+vim.g.netrw_liststyle = 1
+vim.g.netrw_keepdir = 0
+vim.g.netrw_preview = 1
+vim.g.netrw_cursor = 2
+vim.g.netrw_sizestyle = 'H'
+vim.g.netrw_hide = 1
+vim.g.netrw_list_hide = [[\(^\|\s\s\)\zs\.\S\+]]
 
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -53,7 +58,9 @@ vim.opt.autochdir = false
 vim.opt.path:append("**")
 vim.opt.selection = "inclusive"
 vim.opt.mouse = "a"
-vim.opt.clipboard:append("unnamedplus")
+vim.schedule(function()
+  vim.o.clipboard = 'unnamedplus'
+end)
 vim.opt.modifiable = true
 
 vim.opt.spell = true
