@@ -1,15 +1,14 @@
--- highlight yanked text
 vim.api.nvim_create_autocmd("TextYankPost", {
+  desc = 'Highlight when yanking text',
 	group = augroup,
 	callback = function()
 		vim.hl.on_yank()
 	end,
 })
 
--- return to last cursor position
 vim.api.nvim_create_autocmd("BufReadPost", {
-	group = augroup,
 	desc = "Restore last cursor position",
+	group = augroup,
 	callback = function()
 		if vim.o.diff then -- except in diff mode
 			return
@@ -25,4 +24,12 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 
 		pcall(vim.api.nvim_win_set_cursor, 0, last_pos)
 	end,
+})
+
+vim.api.nvim_create_autocmd('BufEnter', {
+  desc = 'Stop comment continuation',
+  group = augroup,
+  callback = function()
+    vim.opt.formatoptions:remove { 'c', 'r', 'o' }
+  end,
 })
