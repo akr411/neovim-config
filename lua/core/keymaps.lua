@@ -1,14 +1,13 @@
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+local opts = { silent = true }
 
-vim.keymap.set("i", "kj", "<ESC>", { silent = true })
-vim.keymap.set("n", "j", "gj", { silent = true })
-vim.keymap.set("n", "k", "gk", { silent = true })
-vim.keymap.set("n", "<Esc>", "<Cmd>noh<CR>", { silent = true })
+vim.keymap.set("i", "kj", "<ESC>", opts)
+vim.keymap.set("n", "j", "gj", opts)
+vim.keymap.set("n", "k", "gk", opts)
+vim.keymap.set("n", "<Esc>", "<Cmd>noh<CR>")
 vim.keymap.set("x", "p", '"_dP')
 vim.keymap.set({ "n", "v" }, "<Leader>x", '"_d')
 
-vim.keymap.set("n", "<Leader>e", "<Cmd>Explore<CR>")
+vim.keymap.set("n", "<Leader>e", "<Cmd>Oil<CR>")
 
 vim.keymap.set("n", "<Leader>bn", "<Cmd>bnext<CR>")
 vim.keymap.set("n", "<Leader>bp", "<Cmd>bprevious<CR>")
@@ -35,19 +34,23 @@ vim.keymap.set("v", ">", ">gv")
 
 vim.keymap.set("n", "J", "mzJ`z")
 
-vim.keymap.set('n', '[q', vim.cmd.cprev)
-vim.keymap.set('n', ']q', vim.cmd.cnext)
+vim.keymap.set("n", "[q", vim.cmd.cprev)
+vim.keymap.set("n", "]q", vim.cmd.cnext)
 
-vim.keymap.set('n', '[b', vim.cmd.bprevious)
-vim.keymap.set('n', ']b', vim.cmd.bnext)
+vim.keymap.set("n", "[b", vim.cmd.bprevious)
+vim.keymap.set("n", "]b", vim.cmd.bnext)
 
-vim.keymap.set('n', '<Leader>q', vim.diagnostic.setloclist)
+vim.keymap.set("n", "<Leader>q", vim.diagnostic.setloclist)
+
+vim.keymap.set("v", "<Leader>sr", "<Cmd>'<,'>sort<CR>")
 
 vim.keymap.set("n", "<Leader>pa", function() -- show file path
 	local path = vim.fn.expand("%:p")
 	vim.fn.setreg("+", path)
 	print("file:", path)
 end)
+
+vim.keymap.set("n", "<Leader>pu", vim.pack.update)
 
 vim.keymap.set("n", "<Leader>td", function()
 	vim.diagnostic.enable(not vim.diagnostic.is_enabled())

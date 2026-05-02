@@ -1,32 +1,13 @@
-vim.opt.termguicolors = true
-vim.opt.encoding = "utf-8"
-vim.cmd.colorscheme("habamax")
+require("vim._core.ui2").enable({
+	enable = true,
+	msg = {
+		target = "cmd",
+		pager = { height = 1 },
+		msg = { height = 0.5, timeout = 4500 },
+		dialog = { height = 0.5 },
+		cmd = { height = 0.5 },
+	},
+})
 
--- Set UI components to transparent
-local function set_transparent()
-	local groups = {
-		"Normal",
-		"NormalNC",
-		"EndOfBuffer",
-		"NormalFloat",
-		"FloatBorder",
-		"SignColumn",
-		"StatusLine",
-		"StatusLineNC",
-		"TabLine",
-		"TabLineFill",
-		"TabLineSel",
-		"ColorColumn",
-	}
-	for _, g in ipairs(groups) do
-		vim.api.nvim_set_hl(0, g, { bg = "none" })
-	end
-	vim.api.nvim_set_hl(0, "TabLineFill", { bg = "none", fg = "#767676" })
-end
-
-set_transparent()
-
-require("options")
-require("keymaps")
-require("autocmds")
+require("core")
 require("packages")
