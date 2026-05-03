@@ -1,6 +1,6 @@
 vim.pack.add({
-	"https://github.com/lukas-reineke/indent-blankline.nvim",
 	"https://github.com/lewis6991/gitsigns.nvim",
+	"https://github.com/lukas-reineke/indent-blankline.nvim",
 	"https://github.com/mason-org/mason.nvim",
 	"https://github.com/mofiqul/vscode.nvim",
 	"https://github.com/neovim/nvim-lspconfig",
@@ -8,6 +8,7 @@ vim.pack.add({
 	"https://github.com/stevearc/oil.nvim",
 	"https://www.github.com/echasnovski/mini.nvim",
 	"https://www.github.com/ibhagwan/fzf-lua",
+	"https://github.com/mfussenegger/nvim-dap",
 	{
 		src = "https://github.com/hrsh7th/nvim-cmp",
 		branch = "main",
@@ -21,6 +22,7 @@ vim.pack.add({
 
 require("packages.cmp")
 require("packages.colorscheme")
+require("packages.dap")
 require("packages.format")
 require("packages.fzf")
 require("packages.gitsigns")

@@ -1,12 +1,16 @@
 vim.pack.add({
-	"https://github.com/hrsh7th/cmp-buffer",
-	"https://github.com/hrsh7th/cmp-path",
-	"https://github.com/hrsh7th/cmp-cmdline",
 	"https://github.com/f3fora/cmp-spell",
+	"https://github.com/hrsh7th/cmp-buffer",
+	"https://github.com/hrsh7th/cmp-cmdline",
+	"https://github.com/hrsh7th/cmp-path",
 	"https://github.com/onsails/lspkind.nvim",
+	"https://github.com/rafamadriz/friendly-snippets",
+	"https://github.com/saadparwaiz1/cmp_luasnip",
+	"https://github.com/L3MON4D3/LuaSnip",
 })
 
 local cmp = require("cmp")
+local luasnip = require("luasnip")
 local lspkind = require("lspkind")
 
 local lsp_kinds = {
@@ -53,6 +57,8 @@ local select_prev_item = function(fallback)
 	end
 end
 
+require("luasnip.loaders.from_vscode").load()
+
 cmp.setup.cmdline(":", {
 	mapping = cmp.mapping.preset.cmdline(),
 	sources = cmp.config.sources({
@@ -87,9 +93,14 @@ cmp.setup({
 		},
 	},
 	-- config nvim cmp to work with snippet engine
-	snippet = {},
+	snippet = {
+		expand = function(args)
+			luasnip.lsp_expand(args.body)
+		end,
+	},
 	-- autocompletion sources
 	sources = cmp.config.sources({
+		{ name = "luasnip" },
 		{ name = "nvim_lsp" },
 		{ name = "buffer" }, -- text within current buffer
 		{ name = "path" }, -- file system paths
@@ -125,6 +136,8 @@ cmp.setup({
 		["<S-Tab>"] = cmp.mapping(function(fallback)
 			if vim.snippet.active({ direction = -1 }) then
 				vim.snippet.jump(-1)
+			elseif luasnip.jumpable(-1) then
+				luasnip.jump(-1)
 			else
 				fallback()
 			end
@@ -133,6 +146,8 @@ cmp.setup({
 		["<Tab>"] = cmp.mapping(function(fallback)
 			if vim.snippet.active({ direction = 1 }) then
 				vim.snippet.jump(1)
+			elseif luasnip.expand_or_locally_jumpable() then
+				luasnip.expand_or_jump()
 			else
 				fallback()
 			end
