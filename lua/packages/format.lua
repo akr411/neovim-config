@@ -35,6 +35,7 @@ conform.setup({
 	},
 	formatters_by_ft = {
 		go = { "gofumpt" },
+		java = { "google-java-format" },
 		lua = { "stylua" },
 		markdown = { "mdformat", "mardown-toc" },
 	},

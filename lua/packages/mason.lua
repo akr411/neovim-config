@@ -16,6 +16,7 @@ require("mason-lspconfig").setup({
 		"emmet_language_server",
 		"gopls",
 		"html",
+		"jdtls",
 		"lua_ls",
 		"marksman",
 		"ts_ls",
@@ -26,6 +27,7 @@ require("mason-tool-installer").setup({
 	ensure_installed = {
 		"biome",
 		"gofumpt",
+		"google-java-format",
 		"prettier",
 		"shfmt",
 		"stylua",

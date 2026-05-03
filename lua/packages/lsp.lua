@@ -148,6 +148,14 @@ vim.lsp.config("gopls", {
 	},
 })
 
+vim.lsp.config("jdtls", {
+	settings = {
+		java = {
+			signatureHelp = { enabled = true },
+		},
+	},
+})
+
 vim.lsp.config("cssls", {
 	filetypes = { "css", "scss", "less" },
 	init_options = { provideFormatter = true },
@@ -175,10 +183,11 @@ vim.lsp.config("cssls", {
 })
 
 vim.lsp.enable({
-	"lua_ls",
 	"cssls",
 	"emmet_language_server",
-	"ts_ls",
 	"gopls",
+	"lua_ls",
 	"marksman",
+	"ts_ls",
+	"jdtls",
 })
