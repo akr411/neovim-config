@@ -27,6 +27,7 @@ require("mason-tool-installer").setup({
 	ensure_installed = {
 		"biome",
 		"gofumpt",
+		"goimports",
 		"google-java-format",
 		"prettier",
 		"shfmt",
