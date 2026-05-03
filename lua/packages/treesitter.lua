@@ -2,6 +2,8 @@ local treesitter = require("nvim-treesitter")
 treesitter.setup()
 local ensure_installed = {
 	"bash",
+	"go",
+	"java",
 	"json",
 	"lua",
 	"markdown",
