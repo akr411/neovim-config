@@ -1,34 +1,75 @@
-vim.pack.add({
-	"https://github.com/lewis6991/gitsigns.nvim",
-	"https://github.com/lukas-reineke/indent-blankline.nvim",
-	"https://github.com/mason-org/mason.nvim",
-	"https://github.com/mofiqul/vscode.nvim",
-	"https://github.com/neovim/nvim-lspconfig",
-	"https://github.com/stevearc/conform.nvim",
-	"https://github.com/stevearc/oil.nvim",
-	"https://www.github.com/echasnovski/mini.nvim",
-	"https://www.github.com/ibhagwan/fzf-lua",
-	"https://github.com/mfussenegger/nvim-dap",
-	{
-		src = "https://github.com/hrsh7th/nvim-cmp",
-		branch = "main",
-	},
-	{
-		src = "https://github.com/nvim-treesitter/nvim-treesitter",
-		branch = "main",
-		build = ":TSUpdate",
-	},
-})
+local function load(specs, mod)
+	local ok, spec = pcall(require, mod)
+	if not ok then
+		vim.notify("packages: failed to load " .. mod .. "\n" .. spec, vim.log.levels.ERROR)
+	else
+		table.insert(specs, spec)
+	end
+end
 
-require("packages.cmp")
-require("packages.colorscheme")
-require("packages.dap")
-require("packages.format")
-require("packages.fzf")
-require("packages.gitsigns")
-require("packages.indent-blankline")
-require("packages.lsp")
-require("packages.mason")
-require("packages.mini")
-require("packages.oil")
-require("packages.treesitter")
+local specs = {}
+
+-- shared infra
+load(specs, "packages.deps")
+
+-- ui / appearance
+load(specs, "packages.colorscheme")
+load(specs, "packages.devicons")
+load(specs, "packages.bufferline")
+load(specs, "packages.mini")
+load(specs, "packages.starter")
+load(specs, "packages.illuminate")
+load(specs, "packages.indent-blankline")
+load(specs, "packages.which-key")
+
+-- syntax / editing
+load(specs, "packages.treesitter")
+load(specs, "packages.highlight-colors")
+load(specs, "packages.format")
+load(specs, "packages.refactoring")
+load(specs, "packages.markdown")
+
+-- completion
+load(specs, "packages.blink")
+
+-- lsp
+load(specs, "packages.lsp")
+load(specs, "packages.mason")
+load(specs, "packages.jdtls")
+
+-- navigation / files
+load(specs, "packages.fzf")
+load(specs, "packages.oil")
+load(specs, "packages.aerial")
+load(specs, "packages.session")
+
+-- git
+load(specs, "packages.fugitive")
+load(specs, "packages.gitsigns")
+load(specs, "packages.diffview")
+
+-- debugging / testing
+load(specs, "packages.dap")
+load(specs, "packages.neotest")
+
+-- terminal / misc
+load(specs, "packages.toggleterm")
+load(specs, "packages.todo-comments")
+load(specs, "packages.trouble")
+
+local all_plugins = {}
+for _, spec in ipairs(specs) do
+	for _, plugin in ipairs(spec.plugins or {}) do
+		table.insert(all_plugins, plugin)
+	end
+end
+vim.pack.add(all_plugins)
+
+for _, spec in ipairs(specs) do
+	if spec.setup then
+		local ok, err = pcall(spec.setup)
+		if not ok then
+			vim.notify("packages: setup failed\n" .. err, vim.log.levels.ERROR)
+		end
+	end
+end

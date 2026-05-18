@@ -1,0 +1,165 @@
+{
+  "Shebang bash": {
+    "prefix": "shebang",
+    "body": ["#!/usr/bin/env bash", "set -euo pipefail", "", "${0}"],
+    "description": "bash shebang with safe defaults"
+  },
+  "Shebang sh": {
+    "prefix": "shebangsh",
+    "body": ["#!/bin/sh", "set -eu", "", "${0}"],
+    "description": "POSIX sh shebang"
+  },
+  "Function": {
+    "prefix": "fn",
+    "body": ["${1:name}() {", "\t${0}", "}"],
+    "description": "function declaration"
+  },
+  "If": {
+    "prefix": "if",
+    "body": ["if ${1:condition}; then", "\t${0}", "fi"],
+    "description": "if statement"
+  },
+  "If-else": {
+    "prefix": "ife",
+    "body": ["if ${1:condition}; then", "\t${2}", "else", "\t${0}", "fi"],
+    "description": "if-else statement"
+  },
+  "For": {
+    "prefix": "for",
+    "body": ["for ${1:item} in ${2:list}; do", "\t${0}", "done"],
+    "description": "for loop"
+  },
+  "While": {
+    "prefix": "while",
+    "body": ["while ${1:condition}; do", "\t${0}", "done"],
+    "description": "while loop"
+  },
+  "Case": {
+    "prefix": "case",
+    "body": [
+      "case \"${1:var}\" in",
+      "\t${2:pattern})",
+      "\t\t${3}",
+      "\t\t;;",
+      "\t*)",
+      "\t\t${0}",
+      "\t\t;;",
+      "esac"
+    ],
+    "description": "case statement"
+  },
+  "Check command exists": {
+    "prefix": "chkcmd",
+    "body": [
+      "if ! command -v ${1:cmd} &>/dev/null; then",
+      "\techo \"error: ${1} not found\" >&2",
+      "\texit 1",
+      "fi"
+    ],
+    "description": "check if command exists"
+  },
+  "Check root": {
+    "prefix": "chkroot",
+    "body": [
+      "if [[ $EUID -ne 0 ]]; then",
+      "\techo \"error: must run as root\" >&2",
+      "\texit 1",
+      "fi"
+    ],
+    "description": "check running as root"
+  },
+  "Temp dir with cleanup": {
+    "prefix": "tmpdir",
+    "body": [
+      "tmpdir=$(mktemp -d)",
+      "trap 'rm -rf \"$tmpdir\"' EXIT"
+    ],
+    "description": "temp dir with EXIT trap cleanup"
+  },
+  "Trap cleanup": {
+    "prefix": "trap",
+    "body": ["trap '${1:cleanup}' EXIT INT TERM"],
+    "description": "trap for cleanup on exit/interrupt"
+  },
+  "Log info": {
+    "prefix": "logi",
+    "body": ["echo \"[INFO] ${1:message}\""],
+    "description": "log info message"
+  },
+  "Log error": {
+    "prefix": "loge",
+    "body": ["echo \"[ERROR] ${1:message}\" >&2"],
+    "description": "log error to stderr"
+  },
+  "Die": {
+    "prefix": "die",
+    "body": ["die() { echo \"[ERROR] $*\" >&2; exit 1; }"],
+    "description": "die function"
+  },
+  "Default value": {
+    "prefix": "def",
+    "body": ["${1:VAR}=${${1:VAR}:-${2:default}}"],
+    "description": "parameter default value"
+  },
+  "Required var": {
+    "prefix": "req",
+    "body": [": \"${${1:VAR}:?${1} is required}\""],
+    "description": "require variable to be set"
+  },
+  "Script dir": {
+    "prefix": "sdir",
+    "body": ["SCRIPT_DIR=$(cd \"$(dirname \"${BASH_SOURCE[0]}\")\" && pwd)"],
+    "description": "get script's own directory"
+  },
+  "Parse args": {
+    "prefix": "args",
+    "body": [
+      "usage() {",
+      "\techo \"Usage: $(basename \"$0\") [OPTIONS]\"",
+      "\techo \"  -h  show this help\"",
+      "\techo \"  -v  verbose\"",
+      "}",
+      "",
+      "verbose=0",
+      "while getopts ':hv' opt; do",
+      "\tcase $opt in",
+      "\t\th) usage; exit 0 ;;",
+      "\t\tv) verbose=1 ;;",
+      "\t\t*) usage >&2; exit 1 ;;",
+      "\tesac",
+      "done",
+      "shift $((OPTIND - 1))"
+    ],
+    "description": "getopts argument parsing boilerplate"
+  },
+  "Read file lines": {
+    "prefix": "readlines",
+    "body": [
+      "while IFS= read -r line; do",
+      "\t${0}",
+      "done < \"${1:file}\""
+    ],
+    "description": "read file line by line"
+  },
+  "String contains": {
+    "prefix": "contains",
+    "body": ["[[ \"${1:string}\" == *\"${2:substr}\"* ]]"],
+    "description": "check if string contains substring"
+  },
+  "Array": {
+    "prefix": "arr",
+    "body": ["${1:arr}=(${2:\"a\" \"b\" \"c\"})"],
+    "description": "array declaration"
+  },
+  "Retry": {
+    "prefix": "retry",
+    "body": [
+      "for i in $(seq 1 ${1:3}); do",
+      "\t${2:command} && break",
+      "\techo \"attempt $i failed, retrying...\" >&2",
+      "\tsleep ${3:2}",
+      "done"
+    ],
+    "description": "retry command N times"
+  }
+}

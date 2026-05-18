@@ -1,0 +1,658 @@
+{
+  "Frontmatter": {
+    "prefix": "fm",
+    "body": [
+      "---",
+      "title: ${1:Title}",
+      "description: ${2:A short description.}",
+      "date: ${3:2026-05-05}",
+      "tags: [${4:tag1, tag2}]",
+      "draft: ${5|false,true|}",
+      "---",
+      "",
+      "$0"
+    ],
+    "description": "YAML frontmatter block with description + draft toggle"
+  },
+
+  "Table of contents": {
+    "prefix": "toc",
+    "body": [
+      "## Table of Contents",
+      "",
+      "- [Overview](#overview)",
+      "- [Installation](#installation)",
+      "- [Usage](#usage)",
+      "- [${1:API Reference}](#${1/[A-Z]/\\l$0/g/ /-/g})",
+      "- [Contributing](#contributing)",
+      "- [License](#license)",
+      "",
+      "$0"
+    ],
+    "description": "Table of contents with anchor links"
+  },
+
+  "Section header h1": {
+    "prefix": "h1",
+    "body": ["# ${1:Title}", "", "$0"],
+    "description": "H1 section header"
+  },
+
+  "Section header h2": {
+    "prefix": "h2",
+    "body": ["## ${1:Section}", "", "$0"],
+    "description": "H2 section header"
+  },
+
+  "Section header h3": {
+    "prefix": "h3",
+    "body": ["### ${1:Subsection}", "", "$0"],
+    "description": "H3 section header"
+  },
+
+  "Section header h4": {
+    "prefix": "h4",
+    "body": ["#### ${1:Topic}", "", "$0"],
+    "description": "H4 section header"
+  },
+
+  "Bold": {
+    "prefix": "bold",
+    "body": "**${1:text}**$0",
+    "description": "Bold text"
+  },
+
+  "Italic": {
+    "prefix": "italic",
+    "body": "*${1:text}*$0",
+    "description": "Italic text"
+  },
+
+  "Bold italic": {
+    "prefix": "bi",
+    "body": "***${1:text}***$0",
+    "description": "Bold and italic"
+  },
+
+  "Strikethrough": {
+    "prefix": "strike",
+    "body": "~~${1:text}~~$0",
+    "description": "Strikethrough text"
+  },
+
+  "Inline code": {
+    "prefix": "ic",
+    "body": "`${1:code}`$0",
+    "description": "Inline code span"
+  },
+
+  "Blockquote": {
+    "prefix": "bq",
+    "body": [
+      "> ${1:Quote text}",
+      ">",
+      "> — ${2:Author, *Source*, Year}",
+      "$0"
+    ],
+    "description": "Blockquote with attribution"
+  },
+
+  "Code block": {
+    "prefix": "cb",
+    "body": ["```${1:language}", "$0", "```"],
+    "description": "Fenced code block with language"
+  },
+
+  "Code block bash": {
+    "prefix": "cbb",
+    "body": ["```bash", "$0", "```"],
+    "description": "Bash code block"
+  },
+
+  "Code block go": {
+    "prefix": "cbg",
+    "body": ["```go", "$0", "```"],
+    "description": "Go code block"
+  },
+
+  "Code block java": {
+    "prefix": "cbj",
+    "body": ["```java", "$0", "```"],
+    "description": "Java code block"
+  },
+
+  "Code block python": {
+    "prefix": "cbpy",
+    "body": ["```python", "$0", "```"],
+    "description": "Python code block"
+  },
+
+  "Code block sql": {
+    "prefix": "cbs",
+    "body": [
+      "```sql",
+      "SELECT ${1:column}",
+      "FROM ${2:table}",
+      "WHERE ${3:condition};",
+      "```",
+      "$0"
+    ],
+    "description": "SQL code block with scaffolded SELECT"
+  },
+
+  "Code block json": {
+    "prefix": "cbjs",
+    "body": ["```json", "{", "  $0", "}", "```"],
+    "description": "JSON code block"
+  },
+
+  "Code block yaml": {
+    "prefix": "cby",
+    "body": ["```yaml", "$0", "```"],
+    "description": "YAML code block"
+  },
+
+  "Code block http": {
+    "prefix": "cbhttp",
+    "body": [
+      "```http",
+      "${1|GET,POST,PUT,PATCH,DELETE|} ${2:/api/v1/resource} HTTP/1.1",
+      "Host: ${3:api.example.com}",
+      "Content-Type: application/json",
+      "Authorization: Bearer ${4:<token>}",
+      "",
+      "${5:{}}",
+      "```",
+      "$0"
+    ],
+    "description": "HTTP request code block"
+  },
+
+  "Link": {
+    "prefix": "lnk",
+    "body": "[${1:text}](${2:https://example.com})$0",
+    "description": "Inline hyperlink"
+  },
+
+  "Image": {
+    "prefix": "img",
+    "body": "![${1:alt text}](${2:path/to/image.png})$0",
+    "description": "Inline image"
+  },
+
+  "Image with title": {
+    "prefix": "imgt",
+    "body": "![${1:alt text}](${2:path/to/image.png} \"${3:Hover title}\")$0",
+    "description": "Image with title attribute"
+  },
+
+  "Reference link": {
+    "prefix": "refl",
+    "body": [
+      "[${1:link text}][${2:ref}]$0",
+      "",
+      "[${2}]: ${3:https://example.com} \"${4:Title}\""
+    ],
+    "description": "Reference-style link with inline definition"
+  },
+
+  "Footnote": {
+    "prefix": "fn",
+    "body": [
+      "${1:text}[^${2:label}]$0",
+      "",
+      "[^${2}]: ${3:Footnote content.}"
+    ],
+    "description": "Footnote with inline definition"
+  },
+
+  "Unordered list": {
+    "prefix": "ul",
+    "body": [
+      "- ${1:First item}",
+      "- ${2:Second item}",
+      "- ${3:Third item}",
+      "$0"
+    ],
+    "description": "Unordered list"
+  },
+
+  "Ordered list": {
+    "prefix": "ol",
+    "body": [
+      "1. ${1:First item}",
+      "2. ${2:Second item}",
+      "3. ${3:Third item}",
+      "$0"
+    ],
+    "description": "Ordered list"
+  },
+
+  "Task list": {
+    "prefix": "tasks",
+    "body": [
+      "- [ ] ${1:First task}",
+      "- [ ] ${2:Second task}",
+      "- [x] ${3:Completed task}",
+      "$0"
+    ],
+    "description": "GitHub task list with checkboxes"
+  },
+
+  "Table 2col": {
+    "prefix": "t2",
+    "body": [
+      "| ${1:Column A}   | ${2:Column B}   |",
+      "| -------------- | -------------- |",
+      "| ${3:value}     | ${4:value}     |",
+      "| ${5:value}     | ${6:value}     |",
+      "$0"
+    ],
+    "description": "Two-column table"
+  },
+
+  "Table 3col": {
+    "prefix": "t3",
+    "body": [
+      "| ${1:Column A}   | ${2:Column B}   | ${3:Column C}   |",
+      "| -------------- | -------------- | -------------- |",
+      "| ${4:value}     | ${5:value}     | ${6:value}     |",
+      "| ${7:value}     | ${8:value}     | ${9:value}     |",
+      "$0"
+    ],
+    "description": "Three-column table"
+  },
+
+  "API parameter table": {
+    "prefix": "tapiv",
+    "body": [
+      "| Parameter    | Type       | Required | Default      | Description                |",
+      "| ------------ | ---------- | :------: | ------------ | -------------------------- |",
+      "| `${1:name}`  | `${2:string}` | ${3|✓, |} | `${4:\"\"}` | ${5:Parameter description.} |",
+      "$0"
+    ],
+    "description": "API parameter reference table (name, type, required, default, description)"
+  },
+
+  "Callout note": {
+    "prefix": "cnote",
+    "body": ["> [!NOTE]", "> ${0:Highlights information users should take into account.}"],
+    "description": "GitHub NOTE callout"
+  },
+
+  "Callout tip": {
+    "prefix": "ctip",
+    "body": ["> [!TIP]", "> ${0:Optional information to help a user be more successful.}"],
+    "description": "GitHub TIP callout"
+  },
+
+  "Callout important": {
+    "prefix": "cimp",
+    "body": ["> [!IMPORTANT]", "> ${0:Crucial information necessary for users to succeed.}"],
+    "description": "GitHub IMPORTANT callout"
+  },
+
+  "Callout warning": {
+    "prefix": "cwarn",
+    "body": ["> [!WARNING]", "> ${0:Critical content demanding immediate user attention due to potential risks.}"],
+    "description": "GitHub WARNING callout"
+  },
+
+  "Callout caution": {
+    "prefix": "ccaut",
+    "body": ["> [!CAUTION]", "> ${0:Negative potential consequences of an action.}"],
+    "description": "GitHub CAUTION callout"
+  },
+
+  "Details / collapsible": {
+    "prefix": "details",
+    "body": [
+      "<details>",
+      "<summary>${1:Click to expand}</summary>",
+      "",
+      "$0",
+      "",
+      "</details>"
+    ],
+    "description": "HTML collapsible details block"
+  },
+
+  "Details with code block": {
+    "prefix": "detailscode",
+    "body": [
+      "<details>",
+      "<summary><code>${1:Show example output}</code></summary>",
+      "",
+      "```${2:text}",
+      "$0",
+      "```",
+      "",
+      "</details>"
+    ],
+    "description": "Collapsible section wrapping a code block — common in READMEs for long output"
+  },
+
+  "API endpoint doc": {
+    "prefix": "api",
+    "body": [
+      "### `${1|GET,POST,PUT,PATCH,DELETE|} ${2:/api/v1/resource}`",
+      "",
+      "${3:Brief description of what this endpoint does.}",
+      "",
+      "**Request**",
+      "",
+      "```http",
+      "${1} ${2} HTTP/1.1",
+      "Content-Type: application/json",
+      "Authorization: Bearer <token>",
+      "",
+      "${4:{}}",
+      "```",
+      "",
+      "**Response** `${5:200 OK}`",
+      "",
+      "```json",
+      "${6:{\"id\": \"abc123\"}}",
+      "```",
+      "",
+      "**Parameters**",
+      "",
+      "| Name | Type | Required | Description |",
+      "| ---- | ---- | :------: | ----------- |",
+      "| `${7:param}` | `${8:string}` | ${9|✓, |} | ${10:Description.} |",
+      "",
+      "**Errors**",
+      "",
+      "| Status | Meaning |",
+      "| ------ | ------- |",
+      "| `400`  | ${11:Bad request — missing required field.} |",
+      "| `401`  | Unauthorized — invalid or missing token. |",
+      "| `404`  | Resource not found. |",
+      "",
+      "$0"
+    ],
+    "description": "Full REST API endpoint documentation block"
+  },
+
+  "Function doc": {
+    "prefix": "fundoc",
+    "body": [
+      "#### `${1:functionName}(${2:params})`",
+      "",
+      "${3:One-sentence description of what the function does.}",
+      "",
+      "**Parameters**",
+      "",
+      "| Name | Type | Description |",
+      "| ---- | ---- | ----------- |",
+      "| `${4:param}` | `${5:string}` | ${6:Description.} |",
+      "",
+      "**Returns** — `${7:type}`: ${8:Description of return value.}",
+      "",
+      "**Example**",
+      "",
+      "```${9:go}",
+      "$0",
+      "```"
+    ],
+    "description": "Function documentation block with params table, return, and example"
+  },
+
+  "Changelog entry": {
+    "prefix": "chlog",
+    "body": [
+      "## [${1:1.0.0}] - ${2:2026-05-05}",
+      "",
+      "### Added",
+      "",
+      "- ${3:New feature or capability.}",
+      "",
+      "### Changed",
+      "",
+      "- ${4:Change in existing functionality.}",
+      "",
+      "### Fixed",
+      "",
+      "- $0"
+    ],
+    "description": "Keep a Changelog versioned entry (Added / Changed / Fixed)"
+  },
+
+  "Changelog unreleased": {
+    "prefix": "chunrel",
+    "body": [
+      "## [Unreleased]",
+      "",
+      "### Added",
+      "",
+      "- ${1:New feature.}",
+      "",
+      "### Changed",
+      "",
+      "- ${2:Changed behaviour.}",
+      "",
+      "### Fixed",
+      "",
+      "- ${3:Bug fix.}",
+      "",
+      "### Removed",
+      "",
+      "- $0"
+    ],
+    "description": "Keep a Changelog [Unreleased] block with all four sections"
+  },
+
+  "README installation": {
+    "prefix": "install",
+    "body": [
+      "## Installation",
+      "",
+      "**Requirements**: ${1:List prerequisites, e.g., Go 1.22+, Node 20+.}",
+      "",
+      "```bash",
+      "${2:go install github.com/user/repo@latest}",
+      "```",
+      "",
+      "Or build from source:",
+      "",
+      "```bash",
+      "git clone https://github.com/${3:user}/${4:repo}.git",
+      "cd ${4}",
+      "${5:make build}",
+      "```",
+      "",
+      "$0"
+    ],
+    "description": "README Installation section with requirements and source-build steps"
+  },
+
+  "README usage": {
+    "prefix": "usage",
+    "body": [
+      "## Usage",
+      "",
+      "```bash",
+      "${1:command} ${2:[flags]} ${3:<args>}",
+      "```",
+      "",
+      "**Examples**",
+      "",
+      "```bash",
+      "# ${4:Basic example}",
+      "${5:command --flag value}",
+      "",
+      "# ${6:Another example}",
+      "${7:command --other-flag}",
+      "```",
+      "",
+      "$0"
+    ],
+    "description": "README Usage section with examples block"
+  },
+
+  "README contributing": {
+    "prefix": "contrib",
+    "body": [
+      "## Contributing",
+      "",
+      "Contributions are welcome! Please follow these steps:",
+      "",
+      "1. Fork the repository.",
+      "2. Create a feature branch: `git checkout -b feat/${1:my-feature}`",
+      "3. Commit your changes following [Conventional Commits](https://www.conventionalcommits.org/).",
+      "4. Push to the branch: `git push origin feat/${1}`",
+      "5. Open a pull request.",
+      "",
+      "Please run `${2:make test}` and ensure all checks pass before submitting.",
+      "",
+      "$0"
+    ],
+    "description": "README Contributing section with Conventional Commits note"
+  },
+
+  "README full template": {
+    "prefix": "readme",
+    "body": [
+      "# ${1:Project Name}",
+      "",
+      "> ${2:One-line description of what this project does and why it exists.}",
+      "",
+      "[![License](https://img.shields.io/badge/license-${3:MIT}-blue.svg)](LICENSE)",
+      "[![CI](https://github.com/${4:user}/${5:repo}/actions/workflows/${6:ci.yml}/badge.svg)](https://github.com/${4}/${5}/actions)",
+      "",
+      "## Overview",
+      "",
+      "${7:A paragraph describing the project, its motivation, and key features.}",
+      "",
+      "## Installation",
+      "",
+      "```bash",
+      "${8:go install github.com/${4}/${5}@latest}",
+      "```",
+      "",
+      "## Usage",
+      "",
+      "```bash",
+      "${9:${5} --help}",
+      "```",
+      "",
+      "## Configuration",
+      "",
+      "${10:Describe configuration options or link to docs.}",
+      "",
+      "## Contributing",
+      "",
+      "See [CONTRIBUTING.md](CONTRIBUTING.md).",
+      "",
+      "## License",
+      "",
+      "${3} © ${11:2026} [${12:Author}](https://github.com/${4})",
+      "$0"
+    ],
+    "description": "Full README template with badges, overview, and all standard sections"
+  },
+
+  "ADR": {
+    "prefix": "adr",
+    "body": [
+      "# ${1:ADR-001}: ${2:Title}",
+      "",
+      "**Date:** ${3:2026-05-05}  ",
+      "**Status:** ${4|Proposed,Accepted,Deprecated,Superseded|}",
+      "",
+      "## Context",
+      "",
+      "${5:What is the issue or situation that is motivating this decision or change?}",
+      "",
+      "## Decision",
+      "",
+      "${6:What is the change that we are proposing and/or doing?}",
+      "",
+      "## Consequences",
+      "",
+      "${0:What becomes easier or more difficult because of this change?}"
+    ],
+    "description": "Architecture Decision Record (ADR)"
+  },
+
+  "Mermaid flowchart": {
+    "prefix": "merm",
+    "body": [
+      "```mermaid",
+      "flowchart ${1|TD,LR,RL,BT|}",
+      "    ${2:A}[${3:Start}] --> ${4:B}{${5:Decision?}}",
+      "    ${4} -->|${6:Yes}| ${7:C}[${8:Action}]",
+      "    ${4} -->|${9:No}|  ${10:D}[${11:Other action}]",
+      "```",
+      "$0"
+    ],
+    "description": "Mermaid flowchart with direction choice and decision branch"
+  },
+
+  "Mermaid sequence": {
+    "prefix": "merms",
+    "body": [
+      "```mermaid",
+      "sequenceDiagram",
+      "    participant ${1:Client}",
+      "    participant ${2:Server}",
+      "    ${1}->>+${2}: ${3:Request}",
+      "    ${2}-->>-${1}: ${4:Response}",
+      "```",
+      "$0"
+    ],
+    "description": "Mermaid sequence diagram with participant declarations"
+  },
+
+  "Mermaid ER": {
+    "prefix": "merme",
+    "body": [
+      "```mermaid",
+      "erDiagram",
+      "    ${1:USER} {",
+      "        int id PK",
+      "        string ${2:name}",
+      "        string ${3:email}",
+      "    }",
+      "    ${4:ORDER} {",
+      "        int id PK",
+      "        int user_id FK",
+      "        string ${5:status}",
+      "    }",
+      "    ${1} ||--o{ ${4} : \"places\"",
+      "```",
+      "$0"
+    ],
+    "description": "Mermaid ER diagram with two entities and a relationship"
+  },
+
+  "Mermaid Gantt": {
+    "prefix": "mermg",
+    "body": [
+      "```mermaid",
+      "gantt",
+      "    title ${1:Project Timeline}",
+      "    dateFormat YYYY-MM-DD",
+      "    section ${2:Phase 1}",
+      "        ${3:Task A}  : ${4:2026-05-05}, ${5:7d}",
+      "        ${6:Task B}  : after ${3}, ${7:5d}",
+      "    section ${8:Phase 2}",
+      "        ${9:Task C}  : ${10:2026-05-19}, ${11:10d}",
+      "```",
+      "$0"
+    ],
+    "description": "Mermaid Gantt chart with two phases"
+  },
+
+  "Horizontal rule": {
+    "prefix": "hr",
+    "body": ["---", "$0"],
+    "description": "Horizontal rule"
+  },
+
+  "HTML comment": {
+    "prefix": "comment",
+    "body": "<!-- ${1:TODO: ${2:description}} -->$0",
+    "description": "HTML comment — invisible in rendered Markdown, useful for notes and TODOs"
+  }
+}

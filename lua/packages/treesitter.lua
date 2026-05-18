@@ -1,37 +1,26 @@
-local treesitter = require("nvim-treesitter")
-treesitter.setup()
-local ensure_installed = {
-	"bash",
-	"go",
-	"java",
-	"json",
-	"lua",
-	"markdown",
-	"vim",
-	"vimdoc",
+local M = {}
+
+M.plugins = {
+	{
+		src = "https://github.com/nvim-treesitter/nvim-treesitter",
+		version = "main",
+	},
 }
 
-local config = require("nvim-treesitter.config")
+function M.setup()
+	local requirements = require("core.requirements")
+	local treesitter = require("nvim-treesitter")
 
-local already_installed = config.get_installed()
-local parsers_to_install = {}
+	treesitter.setup()
+	treesitter.install(requirements.treesitter_parsers)
 
-for _, parser in ipairs(ensure_installed) do
-	if not vim.tbl_contains(already_installed, parser) then
-		table.insert(parsers_to_install, parser)
-	end
+	local group = vim.api.nvim_create_augroup("TreeSitterConfig", { clear = true })
+	vim.api.nvim_create_autocmd("FileType", {
+		group = group,
+		callback = function(args)
+			pcall(vim.treesitter.start, args.buf)
+		end,
+	})
 end
 
-if #parsers_to_install > 0 then
-	treesitter.install(parsers_to_install)
-end
-
-local group = vim.api.nvim_create_augroup("TreeSitterConfig", { clear = true })
-vim.api.nvim_create_autocmd("FileType", {
-	group = group,
-	callback = function(args)
-		if vim.list_contains(treesitter.get_installed(), vim.treesitter.language.get_lang(args.match)) then
-			vim.treesitter.start(args.buf)
-		end
-	end,
-})
+return M

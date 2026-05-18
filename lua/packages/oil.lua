@@ -1,174 +1,89 @@
-vim.pack.add({ "https://github.com/refractalize/oil-git-status.nvim" })
+local M = {}
 
-require("oil").setup({
-	default_file_explorer = true,
-	-- See :help oil-columns
-	columns = {
-		"icon",
-		-- "permissions",
-		"size",
-		"mtime",
-	},
-	buf_options = {
-		buflisted = false,
-		bufhidden = "hide",
-	},
-	win_options = {
-		wrap = false,
-		signcolumn = "yes:2",
-		cursorcolumn = false,
-		foldcolumn = "0",
-		spell = false,
-		list = false,
-		conceallevel = 3,
-		concealcursor = "nvic",
-	},
-	delete_to_trash = false,
-	skip_confirm_for_simple_edits = false,
-	-- (:help prompt_save_on_select_new_entry)
-	prompt_save_on_select_new_entry = true,
-	cleanup_delay_ms = 2000,
-	lsp_file_methods = {
-		enabled = true,
-		timeout_ms = 1000,
-		autosave_changes = false,
-	},
-	constrain_cursor = "editable",
-	watch_for_changes = false,
-	-- See :help oil-actions for a list of all available actions
-	keymaps = {
-		["g?"] = { "actions.show_help", mode = "n" },
-		["<CR>"] = "actions.select",
-		["<C-s>"] = { "actions.select", opts = { vertical = true } },
-		["<C-h>"] = { "actions.select", opts = { horizontal = true } },
-		["<C-t>"] = { "actions.select", opts = { tab = true } },
-		["<C-p>"] = "actions.preview",
-		["<C-c>"] = { "actions.close", mode = "n" },
-		["<C-l>"] = "actions.refresh",
-		["-"] = { "actions.parent", mode = "n" },
-		["_"] = { "actions.open_cwd", mode = "n" },
-		["`"] = { "actions.cd", mode = "n" },
-		["g~"] = { "actions.cd", opts = { scope = "tab" }, mode = "n" },
-		["gs"] = { "actions.change_sort", mode = "n" },
-		["gx"] = "actions.open_external",
-		["g."] = { "actions.toggle_hidden", mode = "n" },
-		["g\\"] = { "actions.toggle_trash", mode = "n" },
-	},
-	use_default_keymaps = true,
-	view_options = {
-		show_hidden = false,
-		is_hidden_file = function(name, bufnr)
-			local m = name:match("^%.")
-			return m ~= nil
-		end,
-		is_always_hidden = function(name, bufnr)
-			return false
-		end,
-		natural_order = "fast",
-		case_insensitive = false,
-		sort = {
-			-- see :help oil-columns to see which columns are sortable
-			{ "type", "asc" },
-			{ "name", "asc" },
-		},
-		highlight_filename = function(entry, is_hidden, is_link_target, is_link_orphan)
-			return nil
-		end,
-	},
-	extra_scp_args = {},
-	extra_s3_args = {},
-	git = {
-		add = function(path)
-			return false
-		end,
-		mv = function(src_path, dest_path)
-			return false
-		end,
-		rm = function(path)
-			return false
-		end,
-	},
-	float = {
-		padding = 2,
-		max_width = 0,
-		max_height = 0,
-		border = "single",
-		win_options = {
-			winblend = 0,
-		},
-		get_win_title = nil,
-		preview_split = "auto",
-		override = function(conf)
-			return conf
-		end,
-	},
-	preview_win = {
-		update_on_cursor_moved = true,
-		preview_method = "fast_scratch",
-		disable_preview = function(filename)
-			return false
-		end,
-		win_options = {},
-	},
-	confirmation = {
-		max_width = 0.9,
-		min_width = { 40, 0.4 },
-		width = nil,
-		max_height = 0.9,
-		min_height = { 5, 0.1 },
-		height = nil,
-		border = "single",
-		win_options = {
-			winblend = 0,
-		},
-	},
-	progress = {
-		max_width = 0.9,
-		min_width = { 40, 0.4 },
-		width = nil,
-		max_height = { 10, 0.9 },
-		min_height = { 5, 0.1 },
-		height = nil,
-		border = "single",
-		minimized_border = "none",
-		win_options = {
-			winblend = 0,
-		},
-	},
-	ssh = {
-		border = "single",
-	},
-	keymaps_help = {
-		border = "single",
-	},
-})
+M.plugins = {
+	"https://github.com/stevearc/oil.nvim",
+	"https://github.com/refractalize/oil-git-status.nvim",
+}
 
-require("oil-git-status").setup({
-	show_ignored = true,
-	symbols = {
-		index = {
-			["!"] = "", -- Ignored (Staged)
-			["?"] = "", -- Untracked
-			["A"] = "", -- Added to Index
-			["C"] = "", -- Copied
-			["D"] = "", -- Deleted
-			["M"] = "", -- Modified (Staged)
-			["R"] = "", -- Renamed
-			["T"] = "󰉼", -- Type Changed
-			["U"] = "", -- Conflict
-			[" "] = " ", -- Unmodified
+function M.setup()
+	local icons = require("core.icons")
+
+	require("oil").setup({
+		default_file_explorer = true,
+		columns = { "icon", "size", "mtime" },
+		buf_options = {
+			buflisted = false,
+			bufhidden = "hide",
 		},
-		working_tree = {
-			["!"] = "", -- Ignored
-			["?"] = "", -- Untracked
-			["A"] = "", -- Added
-			["C"] = "", -- Copied
-			["D"] = "", -- Deleted
-			["M"] = "", -- Modified (Unstaged)
-			["R"] = "", -- Renamed
-			["T"] = "󰉼", -- Type Changed
-			["U"] = "", -- Conflict
-			[" "] = " ", -- Unmodified
+		win_options = {
+			wrap = false,
+			signcolumn = "yes:2",
+			conceallevel = 3,
+			concealcursor = "nvic",
 		},
-	},
-})
+		skip_confirm_for_simple_edits = true,
+		constrain_cursor = "editable",
+		watch_for_changes = true,
+		keymaps = {
+			["g?"] = { "actions.show_help", mode = "n" },
+			["<CR>"] = "actions.select",
+			["<C-s>"] = { "actions.select", opts = { vertical = true } },
+			["<C-x>"] = { "actions.select", opts = { horizontal = true } },
+			["<C-t>"] = { "actions.select", opts = { tab = true } },
+			["<C-p>"] = "actions.preview",
+			["<C-c>"] = { "actions.close", mode = "n" },
+			["<C-r>"] = "actions.refresh",
+			["-"] = { "actions.parent", mode = "n" },
+			["_"] = { "actions.open_cwd", mode = "n" },
+			["`"] = { "actions.cd", mode = "n" },
+			["g~"] = { "actions.cd", opts = { scope = "tab" }, mode = "n" },
+			["gs"] = { "actions.change_sort", mode = "n" },
+			["gx"] = "actions.open_external",
+			["g."] = { "actions.toggle_hidden", mode = "n" },
+			["g\\"] = { "actions.toggle_trash", mode = "n" },
+		},
+		view_options = {
+			show_hidden = false,
+			sort = {
+				{ "type", "asc" },
+				{ "name", "asc" },
+			},
+		},
+		git = {
+			add = function(_)
+				return true
+			end,
+			mv = function(_, _)
+				return true
+			end,
+			rm = function(_)
+				return true
+			end,
+		},
+		float = { border = "single" },
+		confirmation = { border = "single" },
+		progress = { border = "single" },
+		ssh = { border = "single" },
+		keymaps_help = { border = "single" },
+	})
+
+	local git_symbols = {
+		["!"] = icons.ui.git_ignored,
+		["?"] = icons.ui.git_untracked,
+		["A"] = icons.ui.git_added,
+		["C"] = icons.ui.git_copied,
+		["D"] = icons.ui.git_deleted,
+		["M"] = icons.ui.git_modified,
+		["R"] = icons.ui.git_renamed,
+		["T"] = icons.ui.type_changed,
+		["U"] = icons.ui.git_conflict,
+		[" "] = " ",
+	}
+
+	require("oil-git-status").setup({
+		show_ignored = true,
+		symbols = { index = git_symbols, working_tree = git_symbols },
+	})
+end
+
+return M

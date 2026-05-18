@@ -1,0 +1,150 @@
+{
+  "Error check": {
+    "prefix": "iferr",
+    "body": ["if err != nil {", "\t${1:return err}", "}"],
+    "description": "if err != nil"
+  },
+  "Error wrap": {
+    "prefix": "iferrw",
+    "body": ["if err != nil {", "\treturn fmt.Errorf(\"${1:operation}: %w\", err)", "}"],
+    "description": "if err != nil with fmt.Errorf wrap"
+  },
+  "Main function": {
+    "prefix": "main",
+    "body": ["func main() {", "\t${0}", "}"],
+    "description": "main function"
+  },
+  "Function": {
+    "prefix": "fn",
+    "body": ["func ${1:name}(${2}) ${3:error} {", "\t${0}", "}"],
+    "description": "function declaration"
+  },
+  "Method": {
+    "prefix": "meth",
+    "body": ["func (${1:r} ${2:Receiver}) ${3:Name}(${4}) ${5:error} {", "\t${0}", "}"],
+    "description": "method declaration"
+  },
+  "Struct": {
+    "prefix": "st",
+    "body": ["type ${1:Name} struct {", "\t${0}", "}"],
+    "description": "struct declaration"
+  },
+  "Interface": {
+    "prefix": "iface",
+    "body": ["type ${1:Name} interface {", "\t${0}", "}"],
+    "description": "interface declaration"
+  },
+  "Constructor": {
+    "prefix": "ctor",
+    "body": ["func New${1:Name}(${2}) *${1:Name} {", "\treturn &${1:Name}{", "\t\t${0}", "\t}", "}"],
+    "description": "constructor function"
+  },
+  "Goroutine": {
+    "prefix": "go",
+    "body": ["go func() {", "\t${0}", "}()"],
+    "description": "goroutine"
+  },
+  "Channel make": {
+    "prefix": "ch",
+    "body": ["${1:ch} := make(chan ${2:int}, ${3:1})"],
+    "description": "make channel"
+  },
+  "Select": {
+    "prefix": "sel",
+    "body": ["select {", "case ${1:v} := <-${2:ch}:", "\t${3}", "case <-ctx.Done():", "\treturn ctx.Err()", "}"],
+    "description": "select statement"
+  },
+  "Context with cancel": {
+    "prefix": "ctx",
+    "body": ["ctx, cancel := context.WithCancel(${1:context.Background()})", "defer cancel()"],
+    "description": "context with cancel"
+  },
+  "Context with timeout": {
+    "prefix": "ctxt",
+    "body": ["ctx, cancel := context.WithTimeout(${1:context.Background()}, ${2:5*time.Second})", "defer cancel()"],
+    "description": "context with timeout"
+  },
+  "For range": {
+    "prefix": "forr",
+    "body": ["for ${1:i}, ${2:v} := range ${3:collection} {", "\t${0}", "}"],
+    "description": "for range"
+  },
+  "HTTP handler": {
+    "prefix": "handler",
+    "body": ["func ${1:Name}Handler(w http.ResponseWriter, r *http.Request) {", "\t${0}", "}"],
+    "description": "http handler"
+  },
+  "HTTP route": {
+    "prefix": "route",
+    "body": ["http.HandleFunc(\"${1:/path}\", ${2:handler})"],
+    "description": "http route"
+  },
+  "JSON response": {
+    "prefix": "jsonres",
+    "body": [
+      "w.Header().Set(\"Content-Type\", \"application/json\")",
+      "if err := json.NewEncoder(w).Encode(${1:data}); err != nil {",
+      "\thttp.Error(w, err.Error(), http.StatusInternalServerError)",
+      "\treturn",
+      "}"
+    ],
+    "description": "write JSON response"
+  },
+  "Table test": {
+    "prefix": "ttest",
+    "body": [
+      "func Test${1:Name}(t *testing.T) {",
+      "\ttests := []struct {",
+      "\t\tname string",
+      "\t\t${2:input} ${3:string}",
+      "\t\twant ${4:string}",
+      "\t\twantErr bool",
+      "\t}{",
+      "\t\t{name: \"${5:case}\", ${2}: ${6}, want: ${7}},",
+      "\t}",
+      "\tfor _, tt := range tests {",
+      "\t\tt.Run(tt.name, func(t *testing.T) {",
+      "\t\t\t${0}",
+      "\t\t})",
+      "\t}",
+      "}"
+    ],
+    "description": "table-driven test"
+  },
+  "Benchmark": {
+    "prefix": "bench",
+    "body": [
+      "func Benchmark${1:Name}(b *testing.B) {",
+      "\tfor b.Loop() {",
+      "\t\t${0}",
+      "\t}",
+      "}"
+    ],
+    "description": "benchmark function"
+  },
+  "Slog info": {
+    "prefix": "logi",
+    "body": ["slog.Info(\"${1:message}\", \"${2:key}\", ${3:value})"],
+    "description": "slog.Info"
+  },
+  "Slog error": {
+    "prefix": "loge",
+    "body": ["slog.Error(\"${1:message}\", \"error\", err)"],
+    "description": "slog.Error"
+  },
+  "Defer close": {
+    "prefix": "dc",
+    "body": ["defer func() {", "\tif err := ${1:closer}.Close(); err != nil {", "\t\tslog.Error(\"close ${1}\", \"error\", err)", "\t}", "}()"],
+    "description": "defer close with error check"
+  },
+  "Mutex": {
+    "prefix": "mutex",
+    "body": ["var ${1:mu} sync.Mutex", "${1}.Lock()", "defer ${1}.Unlock()"],
+    "description": "mutex lock/defer unlock"
+  },
+  "WaitGroup": {
+    "prefix": "wg",
+    "body": ["var wg sync.WaitGroup", "wg.Add(${1:1})", "go func() {", "\tdefer wg.Done()", "\t${0}", "}()", "wg.Wait()"],
+    "description": "WaitGroup pattern"
+  }
+}
