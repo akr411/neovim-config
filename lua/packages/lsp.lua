@@ -3,7 +3,6 @@ local M = {}
 M.plugins = {
 	"https://github.com/neovim/nvim-lspconfig",
 	"https://github.com/j-hui/fidget.nvim",
-	"https://github.com/folke/lazydev.nvim",
 }
 
 function M.setup()
@@ -22,12 +21,6 @@ function M.setup()
 		},
 		notification = {
 			window = { winblend = 0 },
-		},
-	})
-
-	require("lazydev").setup({
-		library = {
-			{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
 		},
 	})
 

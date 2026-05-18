@@ -55,14 +55,10 @@ local day_art = {
 ╚══════╝╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚═════╝ ╚═╝  ╚═╝   ╚═╝]],
 }
 
-local function greeting()
-	local hour = tonumber(os.date("%H"))
-	return hour < 12 and "Good morning." or hour < 17 and "Good afternoon." or "Good evening."
-end
-
 local function header()
-	local dow = tonumber(os.date("%w"))
-	return day_art[dow] .. "\n\n" .. greeting()
+	local t = os.date("*t")
+	local msg = t.hour < 12 and "Good morning." or t.hour < 17 and "Good afternoon." or "Good evening."
+	return day_art[t.wday - 1] .. "\n\n" .. msg
 end
 
 local function actions()
@@ -116,6 +112,7 @@ function M.setup()
 	local starter = require("mini.starter")
 
 	starter.setup({
+		autoopen = false,
 		evaluate_single = true,
 		header = header,
 		items = {
@@ -127,7 +124,7 @@ function M.setup()
 			starter.gen_hook.aligning("center", "center"),
 		},
 		footer = function()
-			local n = #vim.tbl_keys(vim.pack.get(nil, { info = false }))
+			local n = #vim.pack.get(nil, { info = false })
 			return string.format("  %d plugins  ·  Neovim %s", n, tostring(vim.version()))
 		end,
 		silent = true,

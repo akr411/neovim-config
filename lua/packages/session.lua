@@ -10,8 +10,13 @@ function M.setup()
 	require("auto-session").setup({
 		suppressed_dirs = { "~/", "~/Downloads", "/" },
 		git_use_branch_name = true,
-		session_lens = {
-			load_on_setup = false,
+		bypass_save_filetypes = { "ministarter" },
+		no_restore_cmds = {
+			function()
+				if vim.fn.argc() == 0 then
+					require("mini.starter").open()
+				end
+			end,
 		},
 	})
 
