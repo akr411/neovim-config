@@ -6,6 +6,8 @@
 
 Go, Java, Rust, JavaScript, TypeScript and React dev config for Neovim 0.12, using the built-in `vim.pack` package manager.
 
+<img width="1200" alt="nvim-config" src="assets/screenshot.png">
+
 ---
 
 ## Structure
