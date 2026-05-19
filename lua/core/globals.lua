@@ -13,6 +13,15 @@ vim.filetype.add({
 	},
 })
 
+-- suppress client.request dot-syntax deprecation until upstream plugins migrate to colon syntax
+local _orig_deprecate = vim.deprecate
+vim.deprecate = function(name, ...)
+	if name == "client.request" then
+		return
+	end
+	return _orig_deprecate(name, ...)
+end
+
 vim.g.loaded_node_provider = 0
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_python3_provider = 0

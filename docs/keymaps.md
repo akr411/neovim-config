@@ -149,6 +149,7 @@
 | `<Leader>pa` | Copy file path |
 | `<Leader>es` | Sort visual selection |
 | `<Leader>td` | Toggle diagnostics |
+| `<Leader>ta` | Toggle autosuggestions |
 | `<Leader>N` | Notification history |
 
 ## Editing

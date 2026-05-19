@@ -95,11 +95,11 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-	desc = "Enable spell check for prose files",
+	desc = "Disable autosuggestions for prose files",
 	group = augroup,
 	pattern = { "markdown", "text", "gitcommit" },
 	callback = function()
-		vim.opt_local.spell = true
+		vim.b.blink_enabled = false
 	end,
 })
 

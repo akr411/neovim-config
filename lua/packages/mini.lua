@@ -36,7 +36,13 @@ function M.setup()
 		set_vim_settings = false,
 	})
 
-	vim.notify = require("mini.notify").make_notify()
+	vim.notify = require("mini.notify").make_notify({
+		ERROR = { prefix = icons.ui.diagnostic_error },
+		WARN = { prefix = icons.ui.diagnostic_warn },
+		INFO = { prefix = icons.ui.diagnostic_info },
+		DEBUG = { prefix = icons.ui.diagnostic_hint },
+		TRACE = { prefix = icons.ui.diagnostic_hint },
+	})
 end
 
 return M

@@ -60,3 +60,8 @@ end, { desc = "Notification history" })
 vim.keymap.set("n", "<Leader>td", function()
 	vim.diagnostic.enable(not vim.diagnostic.is_enabled())
 end, { desc = "Toggle diagnostics" })
+
+vim.keymap.set("n", "<Leader>ta", function()
+	vim.b.blink_enabled = not (vim.b.blink_enabled == false)
+	vim.notify("Autosuggestions " .. (vim.b.blink_enabled == false and "off" or "on"))
+end, { desc = "Toggle autosuggestions" })

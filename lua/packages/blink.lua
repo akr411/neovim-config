@@ -20,6 +20,9 @@ function M.setup()
 
 	require("blink.cmp").setup({
 		enabled = function()
+			if vim.b.blink_enabled == false then
+				return false
+			end
 			local ok, captures = pcall(
 				vim.treesitter.get_captures_at_pos,
 				0,

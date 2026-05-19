@@ -51,6 +51,9 @@ vim.opt.foldlevel = 99
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 
+vim.opt.spell = true
+vim.opt.spelloptions:append("noplainbuffer")
+
 vim.opt.wildmenu = true
 vim.opt.wildmode = "longest:full,full"
 vim.opt.diffopt:append("linematch:60")
