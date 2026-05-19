@@ -164,6 +164,16 @@ function M.setup()
 		},
 	})
 
+	vim.lsp.config("eslint", {
+		filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+		settings = {
+			workingDirectory = { mode = "auto" },
+			format = false,
+			validate = "on",
+			run = "onType",
+		},
+	})
+
 	vim.lsp.config("cssls", {
 		filetypes = { "css", "scss", "less" },
 		init_options = { provideFormatter = true },

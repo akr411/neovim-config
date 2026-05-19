@@ -1,0 +1,127 @@
+{
+    "Interface": {
+        "prefix": "iface",
+        "body": ["interface ${1:Name} {", "\t${0}", "}"],
+        "description": "Interface declaration"
+    },
+    "Type alias": {
+        "prefix": "type",
+        "body": ["type ${1:Name} = ${0};"],
+        "description": "Type alias"
+    },
+    "Generic type": {
+        "prefix": "typeg",
+        "body": ["type ${1:Name}<${2:T}> = ${0};"],
+        "description": "Generic type alias"
+    },
+    "Enum": {
+        "prefix": "enum",
+        "body": ["enum ${1:Name} {", "\t${2:Member} = '${3:value}',", "\t${0}", "}"],
+        "description": "Enum declaration"
+    },
+    "Const enum": {
+        "prefix": "cenum",
+        "body": ["const enum ${1:Name} {", "\t${2:Member},", "\t${0}", "}"],
+        "description": "Const enum"
+    },
+    "Arrow function typed": {
+        "prefix": "afn",
+        "body": ["const ${1:name} = (${2:args}): ${3:ReturnType} => {", "\t${0}", "};"],
+        "description": "Typed arrow function"
+    },
+    "Async arrow function typed": {
+        "prefix": "aafn",
+        "body": ["const ${1:name} = async (${2:args}): Promise<${3:ReturnType}> => {", "\t${0}", "};"],
+        "description": "Async typed arrow function"
+    },
+    "Generic function": {
+        "prefix": "gfn",
+        "body": ["function ${1:name}<${2:T}>(${3:arg}: ${2:T}): ${4:ReturnType} {", "\t${0}", "}"],
+        "description": "Generic function"
+    },
+    "Class": {
+        "prefix": "cls",
+        "body": ["class ${1:Name} {", "\tconstructor(${2}) {", "\t\t${0}", "\t}", "}"],
+        "description": "Class declaration"
+    },
+    "Abstract class": {
+        "prefix": "acls",
+        "body": ["abstract class ${1:Name} {", "\tabstract ${2:method}(${3}): ${4:void};", "\t${0}", "}"],
+        "description": "Abstract class"
+    },
+    "Implements": {
+        "prefix": "impl",
+        "body": ["class ${1:Name} implements ${2:Interface} {", "\t${0}", "}"],
+        "description": "Class implements interface"
+    },
+    "Readonly": {
+        "prefix": "ro",
+        "body": ["readonly ${1:prop}: ${0:Type};"],
+        "description": "Readonly property"
+    },
+    "Non-null assertion": {
+        "prefix": "nn",
+        "body": ["${1:expr}!"],
+        "description": "Non-null assertion"
+    },
+    "Type assertion": {
+        "prefix": "as",
+        "body": ["(${1:expr} as ${0:Type})"],
+        "description": "Type assertion"
+    },
+    "Satisfies": {
+        "prefix": "sat",
+        "body": ["${1:expr} satisfies ${0:Type}"],
+        "description": "satisfies operator"
+    },
+    "Record type": {
+        "prefix": "rec",
+        "body": ["Record<${1:Key}, ${0:Value}>"],
+        "description": "Record utility type"
+    },
+    "Partial": {
+        "prefix": "part",
+        "body": ["Partial<${0:Type}>"],
+        "description": "Partial utility type"
+    },
+    "Required": {
+        "prefix": "req",
+        "body": ["Required<${0:Type}>"],
+        "description": "Required utility type"
+    },
+    "Pick": {
+        "prefix": "pick",
+        "body": ["Pick<${1:Type}, ${0:'key'}>"],
+        "description": "Pick utility type"
+    },
+    "Omit": {
+        "prefix": "omit",
+        "body": ["Omit<${1:Type}, ${0:'key'}>"],
+        "description": "Omit utility type"
+    },
+    "keyof": {
+        "prefix": "kof",
+        "body": ["keyof ${0:Type}"],
+        "description": "keyof operator"
+    },
+    "typeof": {
+        "prefix": "tof",
+        "body": ["typeof ${0:expr}"],
+        "description": "typeof operator"
+    },
+    "Type guard": {
+        "prefix": "tguard",
+        "body": ["function is${1:Type}(val: unknown): val is ${1:Type} {", "\t${0}", "}"],
+        "description": "Type guard function"
+    },
+    "Mapped type": {
+        "prefix": "mtype",
+        "body": ["type ${1:Name} = {", "\t[K in keyof ${2:T}]: ${0}", "};"],
+        "description": "Mapped type"
+    },
+    "Conditional type": {
+        "prefix": "ctype",
+        "body": ["type ${1:Name} = ${2:T} extends ${3:Condition} ? ${4:True} : ${0:False};"],
+        "description": "Conditional type"
+    }
+}

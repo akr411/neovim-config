@@ -1,0 +1,122 @@
+{
+    "Arrow function": {
+        "prefix": "afn",
+        "body": ["const ${1:name} = (${2:args}) => {", "\t${0}", "};"],
+        "description": "Arrow function"
+    },
+    "Arrow function inline": {
+        "prefix": "afni",
+        "body": ["const ${1:name} = (${2:args}) => ${0};"],
+        "description": "Inline arrow function"
+    },
+    "Async arrow function": {
+        "prefix": "aafn",
+        "body": ["const ${1:name} = async (${2:args}) => {", "\t${0}", "};"],
+        "description": "Async arrow function"
+    },
+    "Named function": {
+        "prefix": "fn",
+        "body": ["function ${1:name}(${2:args}) {", "\t${0}", "}"],
+        "description": "Named function"
+    },
+    "Async function": {
+        "prefix": "afunc",
+        "body": ["async function ${1:name}(${2:args}) {", "\t${0}", "}"],
+        "description": "Async named function"
+    },
+    "Console log": {
+        "prefix": "cl",
+        "body": ["console.log(${0});"],
+        "description": "console.log"
+    },
+    "Console error": {
+        "prefix": "ce",
+        "body": ["console.error(${0});"],
+        "description": "console.error"
+    },
+    "Destructure object": {
+        "prefix": "dest",
+        "body": ["const { ${1:key} } = ${0};"],
+        "description": "Object destructuring"
+    },
+    "Destructure array": {
+        "prefix": "desta",
+        "body": ["const [${1:item}] = ${0};"],
+        "description": "Array destructuring"
+    },
+    "Spread": {
+        "prefix": "spr",
+        "body": ["...${0}"],
+        "description": "Spread operator"
+    },
+    "Ternary": {
+        "prefix": "tern",
+        "body": ["${1:condition} ? ${2:then} : ${0:else}"],
+        "description": "Ternary expression"
+    },
+    "Optional chaining": {
+        "prefix": "opt",
+        "body": ["${1:obj}?.${0}"],
+        "description": "Optional chaining"
+    },
+    "Nullish coalescing": {
+        "prefix": "nc",
+        "body": ["${1:value} ?? ${0:default}"],
+        "description": "Nullish coalescing"
+    },
+    "Promise": {
+        "prefix": "prom",
+        "body": ["new Promise((resolve, reject) => {", "\t${0}", "});"],
+        "description": "new Promise"
+    },
+    "Try/catch": {
+        "prefix": "tryc",
+        "body": ["try {", "\t${1}", "} catch (${2:err}) {", "\t${0}", "}"],
+        "description": "try/catch"
+    },
+    "Try/catch/finally": {
+        "prefix": "trycf",
+        "body": ["try {", "\t${1}", "} catch (${2:err}) {", "\t${3}", "} finally {", "\t${0}", "}"],
+        "description": "try/catch/finally"
+    },
+    "forEach": {
+        "prefix": "fe",
+        "body": ["${1:arr}.forEach((${2:item}) => {", "\t${0}", "});"],
+        "description": "Array forEach"
+    },
+    "map": {
+        "prefix": "map",
+        "body": ["${1:arr}.map((${2:item}) => ${0})"],
+        "description": "Array map"
+    },
+    "filter": {
+        "prefix": "filt",
+        "body": ["${1:arr}.filter((${2:item}) => ${0})"],
+        "description": "Array filter"
+    },
+    "reduce": {
+        "prefix": "red",
+        "body": ["${1:arr}.reduce((${2:acc}, ${3:item}) => {", "\t${0}", "\treturn ${2};", "}, ${4:initial})"],
+        "description": "Array reduce"
+    },
+    "Import": {
+        "prefix": "imp",
+        "body": ["import ${1:name} from '${0}';"],
+        "description": "ES module import"
+    },
+    "Import named": {
+        "prefix": "impn",
+        "body": ["import { ${1:name} } from '${0}';"],
+        "description": "Named import"
+    },
+    "Export default": {
+        "prefix": "expd",
+        "body": ["export default ${0};"],
+        "description": "Export default"
+    },
+    "Export named": {
+        "prefix": "expn",
+        "body": ["export { ${0} };"],
+        "description": "Named export"
+    }
+}

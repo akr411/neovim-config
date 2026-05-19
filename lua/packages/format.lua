@@ -7,15 +7,6 @@ M.plugins = {
 function M.setup()
 	local conform = require("conform")
 	local fmt_opts = { lsp_format = "fallback", async = false, timeout_ms = 1000 }
-	local markdown_formatters = {}
-
-	if vim.fn.executable("mdformat") == 1 then
-		table.insert(markdown_formatters, "mdformat")
-	end
-	if vim.fn.executable("markdown-toc") == 1 then
-		table.insert(markdown_formatters, "markdown-toc")
-	end
-	table.insert(markdown_formatters, "prettier")
 
 	conform.setup({
 		formatters = {
@@ -36,21 +27,27 @@ function M.setup()
 					return #diag > 0
 				end,
 			},
-			["prettier"] = {
-				args = { "--stdin-filepath", "$FILENAME", "--tab-width", "4", "--no-use-tabs" },
-			},
 			["shfmt"] = {
 				prepend_args = { "-i", "4", "-bn", "-ci", "-sr" },
 			},
 		},
 		formatters_by_ft = {
-			go = { "goimports", "gofumpt" },
-			java = { "google-java-format" },
-			lua = { "stylua" },
-			markdown = markdown_formatters,
-			rust = { "rustfmt" },
-			sh = { "shfmt" },
 			bash = { "shfmt" },
+			css = { "prettierd" },
+			go = { "goimports", "gofumpt" },
+			html = { "prettierd" },
+			java = { "google-java-format" },
+			javascript = { "prettierd" },
+			javascriptreact = { "prettierd" },
+			json = { "prettierd" },
+			less = { "prettierd" },
+			lua = { "stylua" },
+			markdown = { "mdformat", "markdownlint-cli2", "markdown-toc", "prettierd" },
+			rust = { "rustfmt" },
+			scss = { "prettierd" },
+			sh = { "shfmt" },
+			typescript = { "prettierd" },
+			typescriptreact = { "prettierd" },
 		},
 		format_on_save = fmt_opts,
 	})

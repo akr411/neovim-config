@@ -75,6 +75,17 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 	end,
 })
 
+vim.api.nvim_create_autocmd("BufWritePre", {
+	desc = "ESLint auto-fix on save",
+	group = augroup,
+	callback = function()
+		local clients = vim.lsp.get_clients({ bufnr = 0, name = "eslint" })
+		if #clients > 0 then
+			vim.cmd("EslintFixAll")
+		end
+	end,
+})
+
 vim.api.nvim_create_autocmd("FileType", {
 	desc = "Close notification history with q or Esc",
 	group = augroup,
