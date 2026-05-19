@@ -53,6 +53,10 @@ vim.keymap.set("n", "<Leader>pu", "<Cmd>PackUpdate<CR>", { desc = "Pack update" 
 vim.keymap.set("n", "<Leader>pl", "<Cmd>PackList<CR>", { desc = "Pack list" })
 vim.keymap.set("n", "<Leader>pc", "<Cmd>PackClean<CR>", { desc = "Pack clean" })
 
+vim.keymap.set("n", "<Leader>N", function()
+	require("mini.notify").show_history()
+end, { desc = "Notification history" })
+
 vim.keymap.set("n", "<Leader>td", function()
 	vim.diagnostic.enable(not vim.diagnostic.is_enabled())
 end, { desc = "Toggle diagnostics" })

@@ -6,27 +6,12 @@ M.plugins = {
 
 function M.setup()
 	local function set_toggleterm_keymaps(term)
-		local opts = { buffer = term.bufnr, silent = true }
-		vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", vim.tbl_extend("force", opts, { desc = "Exit terminal mode" }))
-		vim.keymap.set("t", "<C-h>", "<Cmd>wincmd h<CR>", vim.tbl_extend("force", opts, { desc = "Focus left window" }))
-		vim.keymap.set(
-			"t",
-			"<C-j>",
-			"<Cmd>wincmd j<CR>",
-			vim.tbl_extend("force", opts, { desc = "Focus lower window" })
-		)
-		vim.keymap.set(
-			"t",
-			"<C-k>",
-			"<Cmd>wincmd k<CR>",
-			vim.tbl_extend("force", opts, { desc = "Focus upper window" })
-		)
-		vim.keymap.set(
-			"t",
-			"<C-l>",
-			"<Cmd>wincmd l<CR>",
-			vim.tbl_extend("force", opts, { desc = "Focus right window" })
-		)
+		local map = require("core.utils").mapper(term.bufnr)
+		map("t", "<Esc><Esc>", "<C-\\><C-n>", "Exit terminal mode")
+		map("t", "<C-h>", "<Cmd>wincmd h<CR>", "Focus left window")
+		map("t", "<C-j>", "<Cmd>wincmd j<CR>", "Focus lower window")
+		map("t", "<C-k>", "<Cmd>wincmd k<CR>", "Focus upper window")
+		map("t", "<C-l>", "<Cmd>wincmd l<CR>", "Focus right window")
 	end
 
 	require("toggleterm").setup({

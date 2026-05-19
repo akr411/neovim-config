@@ -47,15 +47,17 @@ function M.setup()
 			java = { "google-java-format" },
 			lua = { "stylua" },
 			markdown = markdown_formatters,
+			rust = { "rustfmt" },
 			sh = { "shfmt" },
 			bash = { "shfmt" },
 		},
 		format_on_save = fmt_opts,
 	})
 
-	vim.keymap.set({ "n", "v" }, "<Leader>cf", function()
+	local map = require("core.utils").mapper()
+	map({ "n", "v" }, "<Leader>cf", function()
 		conform.format(fmt_opts)
-	end, { desc = "Format buffer" })
+	end, "Format buffer")
 end
 
 return M

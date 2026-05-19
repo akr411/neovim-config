@@ -47,7 +47,8 @@ function M.setup()
 		},
 	})
 
-	vim.keymap.set("n", "<Leader>a", "<Cmd>AerialToggle<CR>", { desc = "Aerial toggle" })
+	local map = require("core.utils").mapper()
+	map("n", "<Leader>a", "<Cmd>AerialToggle<CR>", "Aerial toggle")
 end
 
 return M

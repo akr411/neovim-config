@@ -5,8 +5,7 @@
 ![Languages](https://img.shields.io/badge/Go%20%7C%20Java-primary-00ADD8?style=for-the-badge)
 ![Nerd Fonts](https://img.shields.io/badge/Nerd_Fonts-optional-orange?style=for-the-badge)
 
-A focused Go and Java development environment built on Neovim 0.12 using the
-built-in `vim.pack` package manager — no lazy.nvim, no external bootstrapper.
+Go and Java dev config for Neovim 0.12, using the built-in `vim.pack` package manager.
 
 ---
 
@@ -19,12 +18,12 @@ lua/
     init.lua    loader: collects all plugin specs → vim.pack.add → setup()
     deps.lua    shared infra (plenary, nvim-nio)
     *.lua       one file per feature; each returns { plugins = {...}, setup = fn }
-snippets/       blink.cmp snippet files (go, java, sh, markdown)
+snippets/       snippet files (go, java, sh, markdown) — VSCode format
 syntax/         custom syntax definitions (gotmpl, gowork, mdx)
 docs/           plugins, keymaps, language support
 ```
 
-Each `packages/foo.lua` owns its plugin declarations and configuration together — open any file to see exactly what it installs and how it is configured.
+Each `packages/foo.lua` has its plugin declarations and config in one place — open any file to see what it installs and how it's configured.
 
 ---
 
@@ -33,13 +32,12 @@ Each `packages/foo.lua` owns its plugin declarations and configuration together 
 | Dependency | Version | Purpose |
 |---|---|---|
 | [Neovim](https://neovim.io) | `>= 0.12` | Required |
-| [Nerd Font](https://www.nerdfonts.com) | v3 | Optional, enables icon UI |
+| [Nerd Font](https://www.nerdfonts.com) | v3 | Optional, icons |
 | [ripgrep](https://github.com/BurntSushi/ripgrep) | any | fzf-lua grep |
 | [fd](https://github.com/sharkdp/fd) | any | fzf-lua file find |
 | [fzf](https://github.com/junegunn/fzf) | any | fzf-lua backend |
 | [Go toolchain](https://go.dev/dl/) | `>= 1.21` | gopls, goimports, delve |
 | [JDK](https://adoptium.net) | `>= 17` | jdtls, google-java-format |
-| [cargo](https://rustup.rs) | any | blink.cmp native build |
 
 ---
 

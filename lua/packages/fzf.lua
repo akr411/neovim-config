@@ -23,7 +23,7 @@ function M.setup()
 			stat_file = true,
 			include_current_session = true,
 		},
-		files = { prompt = "  " },
+		files = { prompt = "  ", hidden = false },
 		buffers = { prompt = icons.ui.fzf_buffer .. "  " },
 		grep = {
 			prompt = icons.ui.fzf_grep .. "  ",
@@ -45,25 +45,27 @@ function M.setup()
 		},
 	})
 
-	vim.keymap.set("n", "<Leader>ff", function()
+	local map = require("core.utils").mapper()
+
+	map("n", "<Leader>ff", function()
 		if vim.fn.finddir(".git", vim.fn.getcwd() .. ";") ~= "" then
 			fzf.files({ cmd = "git ls-files --cached --others --exclude-standard" })
 		else
 			fzf.files()
 		end
-	end, { desc = "Find files" })
-	vim.keymap.set("n", "<Leader>fF", fzf.files, { desc = "Find all files" })
-	vim.keymap.set("n", "<Leader>fg", fzf.live_grep, { desc = "Find grep" })
-	vim.keymap.set("n", "<Leader>fw", fzf.grep_cword, { desc = "Find word" })
-	vim.keymap.set("v", "<Leader>fw", fzf.grep_visual, { desc = "Find selection" })
-	vim.keymap.set("n", "<Leader>fr", fzf.resume, { desc = "Find resume" })
-	vim.keymap.set("n", "<Leader>fh", fzf.help_tags, { desc = "Find help" })
-	vim.keymap.set("n", "<Leader>fo", fzf.oldfiles, { desc = "Find old files" })
-	vim.keymap.set("n", "<Leader>fs", fzf.lsp_document_symbols, { desc = "Find document symbols" })
-	vim.keymap.set("n", "<Leader>fS", fzf.lsp_workspace_symbols, { desc = "Find workspace symbols" })
-	vim.keymap.set("n", "<Leader>fx", fzf.diagnostics_document, { desc = "Find buffer diagnostics" })
-	vim.keymap.set("n", "<Leader>fX", fzf.diagnostics_workspace, { desc = "Find workspace diagnostics" })
-	vim.keymap.set("n", "<Leader><Leader>", fzf.buffers, { desc = "Find buffers" })
+	end, "Find files")
+	map("n", "<Leader>fF", fzf.files, "Find all files")
+	map("n", "<Leader>fg", fzf.live_grep, "Find grep")
+	map("n", "<Leader>fw", fzf.grep_cword, "Find word")
+	map("v", "<Leader>fw", fzf.grep_visual, "Find selection")
+	map("n", "<Leader>fr", fzf.resume, "Find resume")
+	map("n", "<Leader>fh", fzf.help_tags, "Find help")
+	map("n", "<Leader>fo", fzf.oldfiles, "Find old files")
+	map("n", "<Leader>fs", fzf.lsp_document_symbols, "Find document symbols")
+	map("n", "<Leader>fS", fzf.lsp_workspace_symbols, "Find workspace symbols")
+	map("n", "<Leader>fx", fzf.diagnostics_document, "Find buffer diagnostics")
+	map("n", "<Leader>fX", fzf.diagnostics_workspace, "Find workspace diagnostics")
+	map("n", "<Leader><Leader>", fzf.buffers, "Find buffers")
 end
 
 return M

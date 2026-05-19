@@ -36,15 +36,12 @@ function M.setup()
 		},
 	})
 
-	vim.keymap.set("n", "<Leader>gv", "<Cmd>DiffviewOpen<CR>", { desc = "Diffview open" })
-	vim.keymap.set("n", "<Leader>gh", "<Cmd>DiffviewFileHistory %<CR>", { desc = "File history" })
-	vim.keymap.set("n", "<Leader>gH", "<Cmd>DiffviewFileHistory<CR>", { desc = "Repo history" })
-	vim.keymap.set(
-		"n",
-		"<Leader>gx",
-		"<Cmd>DiffviewClose<CR>",
-		{ desc = icons.label("Diffview close", icons.ui.diffview_close) }
-	)
+	local map = require("core.utils").mapper()
+
+	map("n", "<Leader>gv", "<Cmd>DiffviewOpen<CR>", "Diffview open")
+	map("n", "<Leader>gh", "<Cmd>DiffviewFileHistory %<CR>", "File history")
+	map("n", "<Leader>gH", "<Cmd>DiffviewFileHistory<CR>", "Repo history")
+	map("n", "<Leader>gx", "<Cmd>DiffviewClose<CR>", icons.label("Diffview close", icons.ui.diffview_close))
 end
 
 return M

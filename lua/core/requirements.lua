@@ -7,11 +7,13 @@ M.lsp_servers = {
 	"gopls",
 	"lua_ls",
 	"marksman",
+	"rust_analyzer",
 	"ts_ls",
 }
 
 M.mason_tools = {
 	"biome",
+	"codelldb",
 	"delve",
 	"gofumpt",
 	"goimports",
@@ -37,6 +39,7 @@ M.treesitter_parsers = {
 	"gosum",
 	"gowork",
 	"java",
+	"rust",
 	"xml",
 	"css",
 	"html",

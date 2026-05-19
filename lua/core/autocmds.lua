@@ -76,6 +76,17 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
+	desc = "Close notification history with q or Esc",
+	group = augroup,
+	pattern = "mininotify-history",
+	callback = function(ev)
+		for _, key in ipairs({ "q", "<Esc>" }) do
+			vim.keymap.set("n", key, "<Cmd>bdelete<CR>", { buffer = ev.buf, silent = true })
+		end
+	end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
 	desc = "Stop comment continuation",
 	group = augroup,
 	callback = function()

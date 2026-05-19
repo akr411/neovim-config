@@ -21,9 +21,10 @@ function M.setup()
 		},
 	})
 
-	vim.keymap.set("n", "<Leader>ft", "<Cmd>TodoFzfLua<CR>", { desc = "Find TODOs" })
-	vim.keymap.set("n", "]t", tc.jump_next, { desc = "Next TODO" })
-	vim.keymap.set("n", "[t", tc.jump_prev, { desc = "Prev TODO" })
+	local map = require("core.utils").mapper()
+	map("n", "<Leader>ft", "<Cmd>TodoFzfLua<CR>", "Find TODOs")
+	map("n", "]t", tc.jump_next, "Next TODO")
+	map("n", "[t", tc.jump_prev, "Prev TODO")
 end
 
 return M

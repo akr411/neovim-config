@@ -77,6 +77,10 @@
       "rev": "84c1f3be59f85a2f5bbb9290040077bc8a68a00c",
       "src": "https://github.com/fredrikaverpil/neotest-golang"
     },
+    "neotest-rust": {
+      "rev": "2c9941d4a358839918fac21d20fc8fef0e1ad05f",
+      "src": "https://github.com/rouge8/neotest-rust"
+    },
     "nvim-dap": {
       "rev": "45a69eba683a2c448dd9ecfc4de89511f0646b5f",
       "src": "https://github.com/mfussenegger/nvim-dap"

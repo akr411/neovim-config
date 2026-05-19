@@ -14,15 +14,17 @@ function M.setup()
 		no_restore_cmds = {
 			function()
 				if vim.fn.argc() == 0 then
-					require("mini.starter").open()
+					require("mini.starter").open(vim.api.nvim_get_current_buf())
 				end
 			end,
 		},
 	})
 
-	vim.keymap.set("n", "<Leader>Sf", "<Cmd>AutoSession search<CR>", { desc = "Session search" })
-	vim.keymap.set("n", "<Leader>Ss", "<Cmd>AutoSession save<CR>", { desc = "Session save" })
-	vim.keymap.set("n", "<Leader>Sd", "<Cmd>AutoSession delete<CR>", { desc = "Session delete" })
+	local map = require("core.utils").mapper()
+
+	map("n", "<Leader>Sf", "<Cmd>AutoSession search<CR>", "Session search")
+	map("n", "<Leader>Ss", "<Cmd>AutoSession save<CR>", "Session save")
+	map("n", "<Leader>Sd", "<Cmd>AutoSession delete<CR>", "Session delete")
 end
 
 return M

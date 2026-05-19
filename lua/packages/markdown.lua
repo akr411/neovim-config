@@ -12,9 +12,10 @@ function M.setup()
 	vim.g.mkdp_filetypes = { "markdown" }
 	pcall(vim.cmd.packadd, "markdown-preview.nvim")
 
-	vim.keymap.set("n", "<Leader>mp", "<Plug>MarkdownPreviewToggle", { desc = "Preview toggle" })
-	vim.keymap.set("n", "<Leader>mo", "<Plug>MarkdownPreview", { desc = "Preview open" })
-	vim.keymap.set("n", "<Leader>mx", "<Plug>MarkdownPreviewStop", { desc = "Preview stop" })
+	local map = require("core.utils").mapper()
+	map("n", "<Leader>mp", "<Plug>MarkdownPreviewToggle", "Preview toggle")
+	map("n", "<Leader>mo", "<Plug>MarkdownPreview", "Preview open")
+	map("n", "<Leader>mx", "<Plug>MarkdownPreviewStop", "Preview stop")
 end
 
 return M

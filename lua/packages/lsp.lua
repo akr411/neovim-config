@@ -28,7 +28,7 @@ function M.setup()
 		group = vim.api.nvim_create_augroup("UserLspConfig", { clear = true }),
 		callback = function(ev)
 			local fzf = require("fzf-lua")
-			local map = require("core.utils").buf_mapper(ev.buf)
+			local map = require("core.utils").mapper(ev.buf)
 
 			map("n", "gR", fzf.lsp_references, "LSP references")
 			map("n", "gD", fzf.lsp_declarations, "LSP declarations")
@@ -136,6 +136,29 @@ function M.setup()
 					functionTypeParameters = true,
 					parameterNames = true,
 					rangeVariableTypes = true,
+				},
+			},
+		},
+	})
+
+	vim.lsp.config("rust_analyzer", {
+		settings = {
+			["rust-analyzer"] = {
+				check = {
+					command = "clippy",
+					extraArgs = { "--", "-W", "clippy::all" },
+				},
+				cargo = {
+					allFeatures = true,
+				},
+				inlayHints = {
+					bindingModeHints = { enable = true },
+					chainingHints = { enable = true },
+					closingBraceHints = { enable = true, minLines = 25 },
+					closureReturnTypeHints = { enable = "always" },
+					lifetimeElisionHints = { enable = "skip_trivial" },
+					parameterHints = { enable = true },
+					typeHints = { enable = true },
 				},
 			},
 		},

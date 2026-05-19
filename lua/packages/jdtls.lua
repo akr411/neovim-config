@@ -97,7 +97,7 @@ function M.setup()
 				},
 				on_attach = function(_, bufnr)
 					local j = require("jdtls")
-					local map = require("core.utils").buf_mapper(bufnr)
+					local map = require("core.utils").mapper(bufnr)
 					map("n", "<Leader>ji", j.organize_imports, "Java organize imports")
 					map("n", "<Leader>jt", j.test_nearest_method, "Java test nearest")
 					map("n", "<Leader>jT", j.test_class, "Java test class")

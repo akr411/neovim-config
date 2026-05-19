@@ -24,21 +24,12 @@ function M.setup()
 		},
 	})
 
-	vim.keymap.set("n", "<Leader>xx", "<Cmd>Trouble diagnostics toggle<CR>", { desc = "Workspace diagnostics" })
-	vim.keymap.set(
-		"n",
-		"<Leader>xb",
-		"<Cmd>Trouble diagnostics toggle filter.buf=0<CR>",
-		{ desc = "Buffer diagnostics" }
-	)
-	vim.keymap.set(
-		"n",
-		"<Leader>xl",
-		"<Cmd>Trouble lsp toggle focus=false win.position=right<CR>",
-		{ desc = "LSP references/definitions" }
-	)
-	vim.keymap.set("n", "<Leader>xq", "<Cmd>Trouble qflist toggle<CR>", { desc = "Quickfix list" })
-	vim.keymap.set("n", "<Leader>xs", "<Cmd>Trouble symbols toggle<CR>", { desc = "Symbols" })
+	local map = require("core.utils").mapper()
+	map("n", "<Leader>xx", "<Cmd>Trouble diagnostics toggle<CR>", "Workspace diagnostics")
+	map("n", "<Leader>xb", "<Cmd>Trouble diagnostics toggle filter.buf=0<CR>", "Buffer diagnostics")
+	map("n", "<Leader>xl", "<Cmd>Trouble lsp toggle focus=false win.position=right<CR>", "LSP references/definitions")
+	map("n", "<Leader>xq", "<Cmd>Trouble qflist toggle<CR>", "Quickfix list")
+	map("n", "<Leader>xs", "<Cmd>Trouble symbols toggle<CR>", "Symbols")
 end
 
 return M

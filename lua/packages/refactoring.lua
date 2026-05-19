@@ -6,33 +6,33 @@ M.plugins = {
 }
 
 function M.setup()
-	local keymap = vim.keymap.set
 	local refactor = require("refactoring")
 	local refactor_debug = require("refactoring.debug")
+	local map = require("core.utils").mapper()
 
 	refactor.setup()
 
-	keymap({ "n", "x" }, "<Leader>re", refactor.extract_func, { desc = "Extract function" })
-	keymap({ "n", "x" }, "<Leader>rv", refactor.extract_var, { desc = "Extract variable" })
-	keymap({ "n", "x" }, "<Leader>ri", refactor.inline_var, { desc = "Inline variable" })
-	keymap({ "n", "x" }, "<Leader>rI", refactor.inline_func, { desc = "Inline function" })
-	keymap({ "n", "x" }, "<Leader>rs", refactor.select_refactor, { desc = "Select refactor" })
+	map({ "n", "x" }, "<Leader>re", refactor.extract_func, "Extract function")
+	map({ "n", "x" }, "<Leader>rv", refactor.extract_var, "Extract variable")
+	map({ "n", "x" }, "<Leader>ri", refactor.inline_var, "Inline variable")
+	map({ "n", "x" }, "<Leader>rI", refactor.inline_func, "Inline function")
+	map({ "n", "x" }, "<Leader>rs", refactor.select_refactor, "Select refactor")
 
-	keymap("n", "<Leader>rp", function()
+	map("n", "<Leader>rp", function()
 		return refactor_debug.print_var({ output_location = "below" }) .. "iw"
-	end, { desc = "Debug print var below", expr = true })
-	keymap("x", "<Leader>rp", function()
+	end, "Debug print var below", { expr = true })
+	map("x", "<Leader>rp", function()
 		return refactor_debug.print_var({ output_location = "below" })
-	end, { desc = "Debug print var below", expr = true })
-	keymap("n", "<Leader>rP", function()
+	end, "Debug print var below", { expr = true })
+	map("n", "<Leader>rP", function()
 		return refactor_debug.print_var({ output_location = "above" }) .. "iw"
-	end, { desc = "Debug print var above", expr = true })
-	keymap("x", "<Leader>rP", function()
+	end, "Debug print var above", { expr = true })
+	map("x", "<Leader>rP", function()
 		return refactor_debug.print_var({ output_location = "above" })
-	end, { desc = "Debug print var above", expr = true })
-	keymap({ "n", "x" }, "<Leader>rc", function()
+	end, "Debug print var above", { expr = true })
+	map({ "n", "x" }, "<Leader>rc", function()
 		refactor_debug.cleanup({ restore_view = true })
-	end, { desc = "Clean debug prints" })
+	end, "Clean debug prints")
 end
 
 return M

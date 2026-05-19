@@ -9,6 +9,7 @@ function M.setup()
 	local wk = require("which-key")
 
 	wk.setup({
+		preset = "helix",
 		delay = 400,
 		win = { border = "single" },
 		icons = {

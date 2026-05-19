@@ -30,7 +30,6 @@
 | [mason-lspconfig.nvim](https://github.com/mason-org/mason-lspconfig.nvim) | Bridge mason and lspconfig |
 | [mason-tool-installer.nvim](https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim) | Keep configured Mason tools installed |
 | [nvim-jdtls](https://github.com/mfussenegger/nvim-jdtls) | Full Java language server |
-| [lazydev.nvim](https://github.com/folke/lazydev.nvim) | Neovim Lua API completion |
 | [fidget.nvim](https://github.com/j-hui/fidget.nvim) | LSP progress indicator |
 | [trouble.nvim](https://github.com/folke/trouble.nvim) | Diagnostics and LSP reference panels |
 

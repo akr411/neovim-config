@@ -69,7 +69,7 @@ M.ui = {
 	gitsigns_changedelete = M.pick("▎", "|"),
 	gitsigns_delete = M.pick("", "-"),
 	gitsigns_topdelete = M.pick("", "-"),
-	gitsigns_untracked = M.pick("╎", "|"),
+	gitsigns_untracked = M.pick("▎", "|"),
 	diffview_close = M.pick("󰅚", "X"),
 	color_swatch = "■",
 }

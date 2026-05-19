@@ -5,11 +5,13 @@ M.plugins = {
 }
 
 function M.setup()
-	vim.keymap.set("n", "<Leader>gg", "<Cmd>Git<CR>", { desc = "Git status" })
-	vim.keymap.set("n", "<Leader>gc", "<Cmd>Git commit<CR>", { desc = "Git commit" })
-	vim.keymap.set("n", "<Leader>gP", "<Cmd>Git push<CR>", { desc = "Git push" })
-	vim.keymap.set("n", "<Leader>gl", "<Cmd>Git log --oneline<CR>", { desc = "Git log" })
-	vim.keymap.set("n", "<Leader>gf", "<Cmd>Git fetch<CR>", { desc = "Git fetch" })
+	local map = require("core.utils").mapper()
+
+	map("n", "<Leader>gg", "<Cmd>Git<CR>", "Git status")
+	map("n", "<Leader>gc", "<Cmd>Git commit<CR>", "Git commit")
+	map("n", "<Leader>gP", "<Cmd>Git push<CR>", "Git push")
+	map("n", "<Leader>gl", "<Cmd>Git log --oneline<CR>", "Git log")
+	map("n", "<Leader>gf", "<Cmd>Git fetch<CR>", "Git fetch")
 end
 
 return M

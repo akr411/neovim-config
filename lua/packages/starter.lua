@@ -134,19 +134,16 @@ function M.setup()
 		pattern = "MiniStarterOpened",
 		callback = function(ev)
 			vim.opt_local.cursorline = false
-			local buf = ev.buf
-			local map = function(lhs, rhs)
-				vim.keymap.set("n", lhs, rhs, { buffer = buf, nowait = true, silent = true })
-			end
-			map("j", function()
+			local map = require("core.utils").mapper(ev.buf)
+			map("n", "j", function()
 				starter.update_current_item("next")
-			end)
-			map("k", function()
+			end, nil, { nowait = true })
+			map("n", "k", function()
 				starter.update_current_item("prev")
-			end)
-			map("<Esc>", function()
+			end, nil, { nowait = true })
+			map("n", "<Esc>", function()
 				starter.set_query("")
-			end)
+			end, nil, { nowait = true })
 		end,
 	})
 end
