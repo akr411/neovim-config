@@ -15,6 +15,7 @@ function M.setup()
 	if vim.fn.executable("markdown-toc") == 1 then
 		table.insert(markdown_formatters, "markdown-toc")
 	end
+	table.insert(markdown_formatters, "prettier")
 
 	conform.setup({
 		formatters = {

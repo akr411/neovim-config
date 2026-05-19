@@ -29,16 +29,16 @@ Each `packages/foo.lua` has its plugin declarations and config in one place — 
 
 ## Requirements
 
-| Dependency | Version | Purpose |
-|---|---|---|
-| [Neovim](https://neovim.io) | `>= 0.12` | Required |
-| [Nerd Font](https://www.nerdfonts.com) | v3 | Optional, icons |
-| [ripgrep](https://github.com/BurntSushi/ripgrep) | any | fzf-lua grep |
-| [fd](https://github.com/sharkdp/fd) | any | fzf-lua file find |
-| [fzf](https://github.com/junegunn/fzf) | any | fzf-lua backend |
-| [Go toolchain](https://go.dev/dl/) | `>= 1.21` | gopls, goimports, delve |
-| [JDK](https://adoptium.net) | `>= 17` | jdtls, google-java-format |
-| [Rust toolchain](https://rustup.rs) | stable | rust-analyzer, rustfmt, codellb |
+| Dependency                                       | Version   | Purpose                          |
+| ------------------------------------------------ | --------- | -------------------------------- |
+| [Neovim](https://neovim.io)                      | `>= 0.12` | Required                         |
+| [Nerd Font](https://www.nerdfonts.com)           | v3        | Optional, icons                  |
+| [ripgrep](https://github.com/BurntSushi/ripgrep) | any       | fzf-lua grep                     |
+| [fd](https://github.com/sharkdp/fd)              | any       | fzf-lua file find                |
+| [fzf](https://github.com/junegunn/fzf)           | any       | fzf-lua backend                  |
+| [Go toolchain](https://go.dev/dl/)               | `>= 1.21` | gopls, goimports, delve          |
+| [JDK](https://adoptium.net)                      | `>= 17`   | jdtls, google-java-format        |
+| [Rust toolchain](https://rustup.rs)              | stable    | rust-analyzer, rustfmt, codelldb |
 
 ---
 
