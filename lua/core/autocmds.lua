@@ -1,6 +1,15 @@
 local augroup = vim.api.nvim_create_augroup("UserConfig", { clear = true })
+local _boot_time = vim.uv.hrtime()
 
--- Plugin-specific post-install steps.
+vim.api.nvim_create_autocmd("VimEnter", {
+	desc = "Capture startup time",
+	group = augroup,
+	once = true,
+	callback = function()
+		vim.g._startup_ms = math.floor((vim.uv.hrtime() - _boot_time) / 1e6)
+	end,
+})
+
 local pack_changed_hooks = {
 	["blink.cmp"] = function(data)
 		if not data.active then

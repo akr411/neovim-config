@@ -3,51 +3,51 @@ local icons = require("core.icons")
 
 M.plugins = {} -- mini.nvim already loaded by mini.lua
 
--- ANSI Shadow font, one entry per weekday (os.date("%w"): 0=Sun … 6=Sat)
+-- ANSI Shadow font, one entry per weekday
 local day_art = {
-	[0] = [[
+	[1] = [[
 ███████╗██╗   ██╗███╗   ██╗██████╗  █████╗ ██╗   ██╗
 ██╔════╝██║   ██║████╗  ██║██╔══██╗██╔══██╗╚██╗ ██╔╝
 ███████╗██║   ██║██╔██╗ ██║██║  ██║███████║ ╚████╔╝
 ╚════██║██║   ██║██║╚██╗██║██║  ██║██╔══██║  ╚██╔╝
 ███████║╚██████╔╝██║ ╚████║██████╔╝██║  ██║   ██║
 ╚══════╝ ╚═════╝ ╚═╝  ╚═══╝╚═════╝ ╚═╝  ╚═╝   ╚═╝]],
-	[1] = [[
+	[2] = [[
 ███╗   ███╗ ██████╗ ███╗   ██╗██████╗  █████╗ ██╗   ██╗
 ████╗ ████║██╔═══██╗████╗  ██║██╔══██╗██╔══██╗╚██╗ ██╔╝
 ██╔████╔██║██║   ██║██╔██╗ ██║██║  ██║███████║ ╚████╔╝
 ██║╚██╔╝██║██║   ██║██║╚██╗██║██║  ██║██╔══██║  ╚██╔╝
 ██║ ╚═╝ ██║╚██████╔╝██║ ╚████║██████╔╝██║  ██║   ██║
 ╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═══╝╚═════╝ ╚═╝  ╚═╝   ╚═╝]],
-	[2] = [[
+	[3] = [[
 ████████╗██╗   ██╗███████╗███████╗██████╗  █████╗ ██╗   ██╗
 ╚══██╔══╝██║   ██║██╔════╝██╔════╝██╔══██╗██╔══██╗╚██╗ ██╔╝
    ██║   ██║   ██║█████╗  ███████╗██║  ██║███████║ ╚████╔╝
    ██║   ██║   ██║██╔══╝  ╚════██║██║  ██║██╔══██║  ╚██╔╝
    ██║   ╚██████╔╝███████╗███████║██████╔╝██║  ██║   ██║
    ╚═╝    ╚═════╝ ╚══════╝╚══════╝╚═════╝ ╚═╝  ╚═╝   ╚═╝]],
-	[3] = [[
+	[4] = [[
 ██╗    ██╗███████╗██████╗ ███╗   ██╗███████╗███████╗██████╗  █████╗ ██╗   ██╗
 ██║    ██║██╔════╝██╔══██╗████╗  ██║██╔════╝██╔════╝██╔══██╗██╔══██╗╚██╗ ██╔╝
 ██║ █╗ ██║█████╗  ██║  ██║██╔██╗ ██║█████╗  ███████╗██║  ██║███████║ ╚████╔╝
 ██║███╗██║██╔══╝  ██║  ██║██║╚██╗██║██╔══╝  ╚════██║██║  ██║██╔══██║  ╚██╔╝
 ╚███╔███╔╝███████╗██████╔╝██║ ╚████║███████╗███████║██████╔╝██║  ██║   ██║
  ╚══╝╚══╝ ╚══════╝╚═════╝ ╚═╝  ╚═══╝╚══════╝╚══════╝╚═════╝ ╚═╝  ╚═╝   ╚═╝]],
-	[4] = [[
+	[5] = [[
 ████████╗██╗  ██╗██╗   ██╗██████╗ ███████╗██████╗  █████╗ ██╗   ██╗
 ╚══██╔══╝██║  ██║██║   ██║██╔══██╗██╔════╝██╔══██╗██╔══██╗╚██╗ ██╔╝
    ██║   ███████║██║   ██║██████╔╝███████╗██║  ██║███████║ ╚████╔╝
    ██║   ██╔══██║██║   ██║██╔══██╗╚════██║██║  ██║██╔══██║  ╚██╔╝
    ██║   ██║  ██║╚██████╔╝██║  ██║███████║██████╔╝██║  ██║   ██║
    ╚═╝   ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═════╝ ╚═╝  ╚═╝   ╚═╝]],
-	[5] = [[
+	[6] = [[
 ███████╗██████╗ ██╗██████╗  █████╗ ██╗   ██╗
 ██╔════╝██╔══██╗██║██╔══██╗██╔══██╗╚██╗ ██╔╝
 █████╗  ██████╔╝██║██║  ██║███████║ ╚████╔╝
 ██╔══╝  ██╔══██╗██║██║  ██║██╔══██║  ╚██╔╝
 ██║     ██║  ██║██║██████╔╝██║  ██║   ██║
 ╚═╝     ╚═╝  ╚═╝╚═╝╚═════╝ ╚═╝  ╚═╝   ╚═╝]],
-	[6] = [[
+	[7] = [[
 ███████╗ █████╗ ████████╗██╗   ██╗██████╗ ██████╗  █████╗ ██╗   ██╗
 ██╔════╝██╔══██╗╚══██╔══╝██║   ██║██╔══██╗██╔══██╗██╔══██╗╚██╗ ██╔╝
 ███████╗███████║   ██║   ██║   ██║██████╔╝██║  ██║███████║ ╚████╔╝
@@ -62,7 +62,7 @@ local function header()
 		or t.hour < 17 and icons.starter.afternoon .. " Good afternoon"
 		or icons.starter.evening .. " Good evening"
 	local date = icons.starter.calendar .. os.date("%B %d, %Y")
-	return day_art[t.wday - 1] .. "\n\n" .. date .. "  ·  " .. msg
+	return day_art[t.wday] .. "\n\n" .. date .. "  ·  " .. msg
 end
 
 local function actions()
@@ -102,23 +102,50 @@ end
 
 local function recent_files()
 	local thunk = require("mini.starter").sections.recent_files(8, true)
-	local devicons = require("nvim-web-devicons")
 	return function()
 		local items = thunk()
 		for _, item in ipairs(items) do
 			item.section = "Recent"
-			local fname = item.name:match("^([^%(]+)"):gsub("%s+$", "")
-			local icon = devicons.get_icon(fname, nil, { default = true })
-			if icon then
-				item.name = icon .. " " .. item.name
-			end
 		end
 		return items
 	end
 end
 
+local hl_cache = {}
+local function icon_hook(content)
+	if not icons.have_nerd_font then
+		return content
+	end
+	local devicons = require("nvim-web-devicons")
+	local coords = require("mini.starter").content_coords(content, "item")
+	for i = #coords, 1, -1 do
+		local l_num, u_num = coords[i].line, coords[i].unit
+		local unit = content[l_num][u_num]
+		if unit.item and unit.item.section == "Recent" then
+			local fname = unit.item.name:gsub("%s+%b()$", "")
+			local ext = fname:match("%.([^%.]+)$") or ""
+			local icon, _, color = devicons.get_icon_color(fname, ext, { default = true })
+			local hl_group = "MiniStarterFileIcon_" .. (ext ~= "" and ext or fname:gsub("[^%w]", "_"))
+			if not hl_cache[hl_group] then
+				vim.api.nvim_set_hl(0, hl_group, { fg = color })
+				hl_cache[hl_group] = true
+			end
+			table.insert(content[l_num], u_num, {
+				string = icon,
+				type = "item_bullet",
+				hl = hl_group,
+				_item = unit.item,
+				_place_cursor = false,
+			})
+		end
+	end
+	return content
+end
+
 function M.setup()
 	local starter = require("mini.starter")
+	local plugin_count = #vim.pack.get(nil, { info = false })
+	local nvim_version = vim.version()
 
 	starter.setup({
 		autoopen = false,
@@ -129,23 +156,21 @@ function M.setup()
 			recent_files,
 		},
 		content_hooks = {
-			starter.gen_hook.adding_bullet("  ", false),
+			icon_hook,
+			starter.gen_hook.adding_bullet(" ", false),
 			starter.gen_hook.aligning("center", "center"),
 		},
 		footer = function()
-			local n = #vim.pack.get(nil, { info = false })
-			local v = vim.version()
-			local ms = vim.g._start_time
-					and string.format("%s%.0fms", icons.starter.startup, (vim.uv.hrtime() - vim.g._start_time) / 1e6)
+			local ms = vim.g._startup_ms and string.format("  ·  %s%dms", icons.starter.startup, vim.g._startup_ms)
 				or ""
 			return string.format(
-				"  %s%d plugins  ·  %sv%d.%d.%d  ·  %s",
+				"  %s%d plugins  ·  %sv%d.%d.%d%s",
 				icons.starter.plugins,
-				n,
+				plugin_count,
 				icons.starter.neovim,
-				v.major,
-				v.minor,
-				v.patch,
+				nvim_version.major,
+				nvim_version.minor,
+				nvim_version.patch,
 				ms
 			)
 		end,
