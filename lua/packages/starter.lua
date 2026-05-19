@@ -1,4 +1,5 @@
 local M = {}
+local icons = require("core.icons")
 
 M.plugins = {} -- mini.nvim already loaded by mini.lua
 
@@ -57,12 +58,14 @@ local day_art = {
 
 local function header()
 	local t = os.date("*t")
-	local msg = t.hour < 12 and "Good morning." or t.hour < 17 and "Good afternoon." or "Good evening."
-	return day_art[t.wday - 1] .. "\n\n" .. msg
+	local msg = t.hour < 12 and icons.starter.morning .. " Good morning"
+		or t.hour < 17 and icons.starter.afternoon .. " Good afternoon"
+		or icons.starter.evening .. " Good evening"
+	local date = icons.starter.calendar .. os.date("%B %d, %Y")
+	return day_art[t.wday - 1] .. "\n\n" .. date .. "  ·  " .. msg
 end
 
 local function actions()
-	local icons = require("core.icons")
 	return {
 		{
 			name = icons.starter.find .. "Find file",
@@ -99,10 +102,16 @@ end
 
 local function recent_files()
 	local thunk = require("mini.starter").sections.recent_files(8, true)
+	local devicons = require("nvim-web-devicons")
 	return function()
 		local items = thunk()
 		for _, item in ipairs(items) do
 			item.section = "Recent"
+			local fname = item.name:match("^([^%(]+)"):gsub("%s+$", "")
+			local icon = devicons.get_icon(fname, nil, { default = true })
+			if icon then
+				item.name = icon .. " " .. item.name
+			end
 		end
 		return items
 	end
@@ -125,7 +134,20 @@ function M.setup()
 		},
 		footer = function()
 			local n = #vim.pack.get(nil, { info = false })
-			return string.format("  %d plugins  ·  Neovim %s", n, tostring(vim.version()))
+			local v = vim.version()
+			local ms = vim.g._start_time
+					and string.format("%s%.0fms", icons.starter.startup, (vim.uv.hrtime() - vim.g._start_time) / 1e6)
+				or ""
+			return string.format(
+				"  %s%d plugins  ·  %sv%d.%d.%d  ·  %s",
+				icons.starter.plugins,
+				n,
+				icons.starter.neovim,
+				v.major,
+				v.minor,
+				v.patch,
+				ms
+			)
 		end,
 		silent = true,
 	})

@@ -123,12 +123,19 @@ M.aerial = {
 }
 
 M.starter = {
+	calendar = M.pick(" ", ""),
+	morning = M.pick(" ", ""),
+	afternoon = M.pick(" ", ""),
+	evening = M.pick(" ", ""),
 	find = M.pick("󰈞 ", ""),
 	grep = M.pick("󰍉 ", ""),
 	recent = M.pick("󱋡 ", ""),
 	sessions = M.pick("󰀓 ", ""),
 	new = M.pick("󰝒 ", ""),
 	quit = M.pick("󰿅 ", ""),
+	startup = M.pick("󰔛 ", "~"),
+	plugins = M.pick(" ", "#"),
+	neovim = M.pick(" ", "NV"),
 }
 
 M.groups = {
