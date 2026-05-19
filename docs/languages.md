@@ -37,5 +37,5 @@ Custom snippets in `snippets/` are loaded automatically by blink.cmp.
 | `go.json` | `iferr`, `iferrw`, `ttest`, `ctx`, `ctxt`, `goroutine`, `handler`, `logi`, `mutex`, `wg` |
 | `java.json` | `rec`, `sealed`, `stream`, `test`, `testcls`, `ptest`, `mock`, `when`, `ctrl`, `svc` |
 | `sh.json` | `shebang`, `fn`, `args`, `tmpdir`, `die`, `retry`, `readlines`, `chkcmd` |
-| `rust.json` | `fn`, `afn`, `struct`, `enum`, `impl`, `implt`, `match`, `mres`, `mopt`, `iflet`, `uoe`, `test`, `testmod`, `atest`, `derive`, `vec`, `pl`, `dbg`, `todo`, `map`, `filt` |
+| `rust.json` | `fn`, `afn`, `struct`, `enum`, `impl`, `implt`, `match`, `mres`, `mopt`, `iflet`, `uoe`, `test`, `testmod`, `atest`, `derive`, `vec`, `pl`, `dbg`, `todo`, `use`, `puse`, `cl`, `map`, `filt` |
 | `markdown.json` | `cb`, `merm`, `cnote`, `cwarn`, `api`, `chlog`, `adr`, `toc`, `tasks` |
